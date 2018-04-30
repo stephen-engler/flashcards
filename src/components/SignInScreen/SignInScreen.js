@@ -10,14 +10,12 @@ import {
   Spinner
 } from "native-base";
 import { View } from "react-native";
+import { connect } from "react-redux";
 import axios from "axios";
 
-const config = {
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true
-};
 
 class SignInScreen extends Component {
+  //sets options for the navigation bar at the top of the screen
   static navigationOptions = {
     title: "Sign in",
     headerStyle: {
@@ -35,35 +33,30 @@ class SignInScreen extends Component {
     error: "",
     loading: false
   };
-
+  //handles the register button press
   handleButtonPress = () => {
+    //checks if passwords match
     if (this.state.password === this.state.confirmPassword) {
       this.setState({ error: "", loading: true });
       const { email, password } = this.state;
-      axios
-        .post(
-          "http://localhost:5000/api/user/register",
-          { username: email, password: password },
-          config
-        )
-        .then(response => {
-          console.log("response from button press ", response);
-          this.props.navigation.navigate("Login");
-        })
-        .catch(error => {
-          console.log("an error in handle button press ", error);
-        });
+      //sends dispatch to saga to register user
+      //expects username and password object
+      this.props.dispatch({
+        type: 'REGISTER_USER',
+        payload: {username: email, password: password}
+      })
     } else {
       this.passwordsDontMatch();
     }
   };
-
+  //gives user message if login failed
   onLoginFail = () => {
     this.setState({
       error: "Authentication fail",
       loading: false
     });
   };
+  //gives the user an error message, and clears password input
   passwordsDontMatch = () => {
     this.setState({
       error: `Passwords don't match`,
@@ -71,7 +64,8 @@ class SignInScreen extends Component {
       confirmPassword: ""
     });
   };
-
+  //if not loading, renders the button for signin
+  //if loading, shows a loading spinner
   renderButton = () => {
     if (this.state.loading) {
       return <Spinner />;
@@ -89,7 +83,15 @@ class SignInScreen extends Component {
       </View>
     );
   };
-
+  //this is called everytime the state is changed, 
+  //if the userInfo.view info changes navigates to that screen
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.state.userInfo.view==="Login"){
+      nextProps.navigation.navigate("Login");
+    }
+    return null;
+  }
+  //render 
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -144,4 +146,8 @@ const styles = {
   }
 };
 
-export default SignInScreen;
+const mapStateToProps = state => ({
+  state
+});
+
+export default connect(mapStateToProps)(SignInScreen);

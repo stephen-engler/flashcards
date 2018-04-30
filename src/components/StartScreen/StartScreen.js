@@ -22,11 +22,13 @@ class StartScreen extends Component {
   };
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/pet", config)
+      .get("http://localhost:5000/api/user/", config)
       .then(response => {
+        console.log('response on did moutn ', response);
         this.props.navigation.navigate("Study");
       })
       .catch(error => {
+        console.log('error from did mount ', error);
         this.props.navigation.navigate("Login");
       });
   }
