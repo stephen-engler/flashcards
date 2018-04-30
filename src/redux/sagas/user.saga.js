@@ -1,5 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import axios from "axios";
+import {push} from 'react-router-redux';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -18,12 +19,10 @@ export function* loginUserSaga(action) {
       config
     );
     yield put({
-      type: "SET_VIEW",
-      payload: "Study"
-    });
-    yield put({
       type: 'GET_USER_INFO'
     })
+    yield put(push('/manage'));
+
   } catch (error) {
     yield console.log("an error logging in user ", error);
   }
@@ -38,10 +37,7 @@ export function* registerUserSaga(action){
       action.payload,
       config
     );
-    yield put({
-      type: "SET_VIEW",
-      payload: 'Login'
-    })
+    yield put(push('/login'));
 
   }catch(error){
     yield console.log('an error registering the user ', error)

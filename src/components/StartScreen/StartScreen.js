@@ -1,48 +1,26 @@
 import React, { Component } from "react";
-import { StackNavigator } from "react-navigation";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import axios from "axios";
 import * as Animatable from "react-native-animatable";
 import {connect} from 'react-redux';
+import {Link} from 'react-router-native';
+import {push} from 'react-router-redux';
 
-const config = {
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true
-};
 
 class StartScreen extends Component {
-  static navigationOptions = {
-    title: "Welcome",
-    headerStyle: {
-      backgroundColor: "#f4511e"
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
-  };
+
   state = {
 
   }
   componentDidMount() {
+    console.log('in startscreen')
     this.props.dispatch({
       type: 'GET_USER_INFO'
     })
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState){
-  //   if (nextProps.state.userInfo.user.id >0) {
-  //     nextProps.navigation.navigate("Study");
-  //   } else if (nextProps.state.userInfo.user.id == null) {
-  //     nextProps.navigation.navigate("Login");
-  //   }
-  //   return null;
-  // }
 
   render() {
-        if (this.props.state.userInfo.user.id > 0) {
-          this.props.navigation.navigate("Study");
-        }
+
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Animatable.Text
@@ -63,17 +41,22 @@ class StartScreen extends Component {
           Cards
         </Animatable.Text>
 
+
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.navigate("Study")}
+          onPress={() => this.props.dispatch(push('/study'))}
         />
         <Button
           title="Login"
-          onPress={() => this.props.navigation.navigate("Login")}
+          onPress={() => this.props.dispatch(push('login'))}
         />
         <Button
           title="Sign up"
-          onPress={() => this.props.navigation.navigate("SignIn")}
+          onPress={() => this.props.dispatch(push('signin'))}
+        />
+        <Button
+          title='manage'
+          onPress={()=>this.props.dispatch(push('manage'))}
         />
       </View>
     );
