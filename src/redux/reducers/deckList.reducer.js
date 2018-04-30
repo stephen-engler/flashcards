@@ -1,5 +1,10 @@
 const deckList = (state = [], action) => {
-  return state;
+  switch(action.type){
+    case 'ALL_DECKS':
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
 export default deckList;

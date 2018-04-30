@@ -15,17 +15,7 @@ import axios from "axios";
 
 
 class SignInScreen extends Component {
-  //sets options for the navigation bar at the top of the screen
-  static navigationOptions = {
-    title: "Sign in",
-    headerStyle: {
-      backgroundColor: "#f4511e"
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
-  };
+
   state = {
     email: "",
     password: "",
@@ -83,14 +73,8 @@ class SignInScreen extends Component {
       </View>
     );
   };
-  //this is called everytime the state is changed, 
-  //if the userInfo.view info changes navigates to that screen
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.state.userInfo.view==="Login"){
-      nextProps.navigation.navigate("Login");
-    }
-    return null;
-  }
+
+
   //render 
   render() {
     return (

@@ -11,18 +11,10 @@ import {
 } from "native-base";
 import { View } from "react-native";
 import { connect } from "react-redux";
+import {push} from 'react-router-redux';
 
 class LoginScreen extends Component {
-  static navigationOptions = {
-    title: "Login",
-    headerStyle: {
-      backgroundColor: "#f4511e"
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
-  };
+
   state = {
     email: "",
     password: "",
@@ -40,10 +32,7 @@ class LoginScreen extends Component {
   };
   //Sets redux store userInfoReducer.view to the view to change to
   handleRegisterPress = () => {
-    this.props.dispatch({
-      type: "SET_VIEW",
-      payload: "SignIn"
-    });
+    this.props.dispatch(push('/signin'));
   };
   //Sets state for error message
   onLoginFail = () => {
@@ -72,20 +61,10 @@ class LoginScreen extends Component {
     );
   };
 
-  //each time the redux store is changed this function is called
-  //if the state of the userInfoReducer.view changes, navigates to the correct view
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps);
-    console.log(prevState);
-    if (nextProps.state.userInfo.view === "Study") {
-      nextProps.navigation.navigate("Study");
-    } else if (nextProps.state.userInfo.view === "SignIn") {
-      nextProps.navigation.navigate("SignIn");
-    }
-    return null;
-  }
+
 
   render() {
+
     return (
       <View style={{ flex: 1 }}>
         <Form>

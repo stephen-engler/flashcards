@@ -1,39 +1,26 @@
 import React, { Component } from "react";
-import { StackNavigator } from "react-navigation";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import axios from "axios";
 import * as Animatable from "react-native-animatable";
+import {connect} from 'react-redux';
+import {Link} from 'react-router-native';
+import {push} from 'react-router-redux';
 
-const config = {
-  headers: { "Content-Type": "application/json" },
-  withCredentials: true
-};
 
 class StartScreen extends Component {
-  static navigationOptions = {
-    title: "Welcome",
-    headerStyle: {
-      backgroundColor: "#f4511e"
-    },
-    headerTintColor: "#fff",
-    headerTitleStyle: {
-      fontWeight: "bold"
-    }
-  };
+
+  state = {
+
+  }
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/api/user/", config)
-      .then(response => {
-        console.log('response on did moutn ', response);
-        this.props.navigation.navigate("Study");
-      })
-      .catch(error => {
-        console.log('error from did mount ', error);
-        this.props.navigation.navigate("Login");
-      });
+    console.log('in startscreen')
+    this.props.dispatch({
+      type: 'GET_USER_INFO'
+    })
   }
 
+
   render() {
+
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Animatable.Text
@@ -54,17 +41,22 @@ class StartScreen extends Component {
           Cards
         </Animatable.Text>
 
+
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.navigate("Study")}
+          onPress={() => this.props.dispatch(push('/study'))}
         />
         <Button
           title="Login"
-          onPress={() => this.props.navigation.navigate("Login")}
+          onPress={() => this.props.dispatch(push('login'))}
         />
         <Button
           title="Sign up"
-          onPress={() => this.props.navigation.navigate("SignIn")}
+          onPress={() => this.props.dispatch(push('signin'))}
+        />
+        <Button
+          title='manage'
+          onPress={()=>this.props.dispatch(push('manage'))}
         />
       </View>
     );
@@ -82,5 +74,9 @@ const styles = {
   }
 };
 
-export default StartScreen;
+const mapStateToProps = state => ({
+  state
+});
+
+export default connect(mapStateToProps)(StartScreen);
 

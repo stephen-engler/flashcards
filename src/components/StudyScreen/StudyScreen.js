@@ -11,6 +11,7 @@ import {
 } from "native-base";
 import { TouchableWithoutFeedback } from "react-native";
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 const cards = [
   {
@@ -40,6 +41,14 @@ class StudyScreen extends Component {
       showAnswer: true
     });
   };
+
+ componentDidMount(){
+
+      // this.props.dispatch({
+      //   type: 'GET_USER_DECKS'
+      // })
+  
+  } 
 
   renderCard = item => {
     if (this.state.showAnswer) {
@@ -82,4 +91,8 @@ class StudyScreen extends Component {
     );
   }
 }
-export default StudyScreen;
+const mapStateToProps = state => ({
+  state
+});
+
+export default connect(mapStateToProps)(StudyScreen);
