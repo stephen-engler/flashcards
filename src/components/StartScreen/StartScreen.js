@@ -3,6 +3,7 @@ import { StackNavigator } from "react-navigation";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
 import axios from "axios";
 import * as Animatable from "react-native-animatable";
+import {connect} from 'react-redux';
 
 const config = {
   headers: { "Content-Type": "application/json" },
@@ -20,20 +21,28 @@ class StartScreen extends Component {
       fontWeight: "bold"
     }
   };
+  state = {
+
+  }
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/api/user/", config)
-      .then(response => {
-        console.log('response on did moutn ', response);
-        this.props.navigation.navigate("Study");
-      })
-      .catch(error => {
-        console.log('error from did mount ', error);
-        this.props.navigation.navigate("Login");
-      });
+    this.props.dispatch({
+      type: 'GET_USER_INFO'
+    })
   }
 
+  // static getDerivedStateFromProps(nextProps, prevState){
+  //   if (nextProps.state.userInfo.user.id >0) {
+  //     nextProps.navigation.navigate("Study");
+  //   } else if (nextProps.state.userInfo.user.id == null) {
+  //     nextProps.navigation.navigate("Login");
+  //   }
+  //   return null;
+  // }
+
   render() {
+        if (this.props.state.userInfo.user.id > 0) {
+          this.props.navigation.navigate("Study");
+        }
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Animatable.Text
@@ -82,5 +91,9 @@ const styles = {
   }
 };
 
-export default StartScreen;
+const mapStateToProps = state => ({
+  state
+});
+
+export default connect(mapStateToProps)(StartScreen);
 

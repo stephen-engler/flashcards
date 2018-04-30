@@ -74,18 +74,21 @@ class LoginScreen extends Component {
 
   //each time the redux store is changed this function is called
   //if the state of the userInfoReducer.view changes, navigates to the correct view
-  static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps);
-    console.log(prevState);
-    if (nextProps.state.userInfo.view === "Study") {
-      nextProps.navigation.navigate("Study");
-    } else if (nextProps.state.userInfo.view === "SignIn") {
-      nextProps.navigation.navigate("SignIn");
-    }
-    return null;
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   console.log(nextProps);
+  //   console.log(prevState);
+  //   if (nextProps.state.userInfo.user.id >0) {
+  //     nextProps.navigation.navigate("Study");
+  //   } else if (nextProps.state.userInfo.view === "SignIn") {
+  //     nextProps.navigation.navigate("SignIn");
+  //   }
+  //   return null;
+  // }
 
   render() {
+    if(this.props.state.userInfo.user.id > 0){
+      this.props.navigation.navigate("Study");
+    }
     return (
       <View style={{ flex: 1 }}>
         <Form>
