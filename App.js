@@ -22,6 +22,7 @@ import SignInScreen from "./src/components/SignInScreen/SignInScreen";
 import StudyScreen from "./src/components/StudyScreen/StudyScreen";
 import StartScreen from "./src/components/StartScreen/StartScreen";
 import ManageScreen from "./src/components/ManageScreen/ManageScreen";
+import CardManageScreen from "./src/components/CardManageScreen/CardManageScreen";
 
 const history = createMemoryHistory();
 
@@ -45,6 +46,7 @@ export default class App extends React.Component {
             <Route path="/signin" component={SignInScreen} />
             <Route path="/manage" component={ManageScreen} />
             <Route path="/study" component={StudyScreen} />
+            <Route path="/cards" component={CardManageScreen}/>
           </View>
         </ConnectedRouter>
       </Provider>

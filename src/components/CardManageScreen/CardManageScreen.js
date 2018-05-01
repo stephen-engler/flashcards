@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { StackNavigator } from "react-navigation";
-import { Platform, StyleSheet, LayoutAnimation, TouchableHighlight } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  LayoutAnimation,
+  TouchableHighlight
+} from "react-native";
 import {
   Container,
   Content,
@@ -13,44 +18,34 @@ import {
   Text,
   Body,
   List,
-  ListItem,
+  ListItem
 } from "native-base";
-import DeckList from './DeckList';
 import { connect } from "react-redux";
+import CardList from './CardList';
 
-
-
-class ManageScreen extends Component {
-  state = {};
-
+class CardManageScreen extends Component {
   componentDidUpdate() {
     LayoutAnimation.spring();
   }
-  componentDidMount() {
-    this.props.dispatch({
-      type: "GET_USER_DECKS"
-    });
-  }
 
   render() {
-    
     return (
       <Container>
         <Header>
           <Body>
-            <Text>Decks</Text>
+            <Text>{this.props.state.cardList.deck.deck_name}</Text>
           </Body>
         </Header>
         <Content>
-          <DeckList/>
+          <CardList />
         </Content>
       </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  state
-});
+const mapStateToProps=(state)=>({
+    state
+})
 
-export default connect(mapStateToProps)(ManageScreen);
+export default connect(mapStateToProps)(CardManageScreen);
