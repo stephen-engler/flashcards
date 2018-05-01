@@ -48,15 +48,15 @@ class StartScreen extends Component {
         />
         <Button
           title="Login"
-          onPress={() => this.props.dispatch(push('login'))}
+          onPress={() => this.props.dispatch(push('/login'))}
         />
         <Button
           title="Sign up"
-          onPress={() => this.props.dispatch(push('signin'))}
+          onPress={() => this.props.dispatch(push('/signin'))}
         />
         <Button
           title='manage'
-          onPress={()=>this.props.dispatch(push('manage'))}
+          onPress={()=>this.props.dispatch(push('/manage'))}
         />
       </View>
     );

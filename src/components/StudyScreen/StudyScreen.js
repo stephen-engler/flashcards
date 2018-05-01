@@ -12,83 +12,27 @@ import {
 import { TouchableWithoutFeedback } from "react-native";
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import FlashcardItem from './FlashcardItem';
 
-const cards = [
-  {
-    prompt: "cat",
-    answer: "el cato"
-  },
-  {
-    prompt: "dog",
-    answer: "el dogo"
-  },
-  {
-    prompt: "sam",
-    answer: "is cute"
-  },
-  {
-    prompt: "trooper",
-    answer: "is fluffy"
-  }
-];
 
 class StudyScreen extends Component {
   state = {
     showAnswer: false
   };
-  handlePress = () => {
-    this.setState({
-      showAnswer: true
-    });
-  };
 
- componentDidMount(){
-
-      // this.props.dispatch({
-      //   type: 'GET_USER_DECKS'
-      // })
-  
+ componentDidMount(){ 
   } 
 
-  renderCard = item => {
-    if (this.state.showAnswer) {
-      return (
-        <CardItem>
-          <Text>{item.prompt}</Text>
-          <Text>{item.answer}</Text>
-        </CardItem>
-      );
-    }
-    return (
-      <CardItem>
-        <Text>{item.prompt}</Text>
-      </CardItem>
-    );
-  };
-
   render() {
-    return (
-      <Container>
+    return <Container>
         <View>
-          <DeckSwiper
-            dataSource={cards}
-            onSwipeLeft={() =>
-              this.setState({ showAnswer: !this.state.showAnswer })
-            }
-            onSwipeRight={() =>
-              this.setState({ showAnswer: !this.state.showAnswer })
-            }
-            renderItem={item => (
-              <TouchableWithoutFeedback onPress={this.handlePress}>
-                <Card style={{ elevation: 3, height: 300 }}>
-                  {this.renderCard(item)}
-                </Card>
-              </TouchableWithoutFeedback>
-            )}
-          />
+          <DeckSwiper 
+            dataSource={this.props.state.cardList.cardList} 
+            renderItem={item =>  
+              <FlashcardItem item={item}/>}
+            />
         </View>
-      </Container>
-    );
+      </Container>;
   }
 }
 const mapStateToProps = state => ({

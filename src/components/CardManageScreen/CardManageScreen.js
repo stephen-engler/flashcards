@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StackNavigator } from "react-navigation";
 import {
   Platform,
   StyleSheet,
@@ -7,6 +6,9 @@ import {
   TouchableHighlight
 } from "react-native";
 import {
+  Button,
+  Footer,
+  FooterTab,
   Container,
   Content,
   View,
@@ -21,16 +23,19 @@ import {
   ListItem
 } from "native-base";
 import { connect } from "react-redux";
+import { push } from "react-router-redux";
 import CardList from './CardList';
 
 class CardManageScreen extends Component {
   componentDidUpdate() {
     LayoutAnimation.spring();
   }
+  handlePress=()=>{
+    this.props.dispatch(push("/study"));
+  }
 
   render() {
-    return (
-      <Container>
+    return <Container>
         <Header>
           <Body>
             <Text>{this.props.state.cardList.deck.deck_name}</Text>
@@ -39,8 +44,21 @@ class CardManageScreen extends Component {
         <Content>
           <CardList />
         </Content>
-      </Container>
-    );
+        <Footer>
+          <FooterTab>
+            <Button full primary onPress={this.handlePress}>
+              <Text style={styles.buttonStyle}>Start</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>;
+  }
+}
+
+const styles = {
+  buttonStyle:{
+    fontSize: 20,
+    color: "white"
   }
 }
 
