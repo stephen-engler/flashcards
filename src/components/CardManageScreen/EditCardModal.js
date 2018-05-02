@@ -25,6 +25,9 @@ class EditCardModal extends Component {
   handleEditAndClear = () => {
       this.props.handleEdit(this.state)
   };
+  handleDeleteAndClear = () =>{
+    this.props.handleDelete(this.state)
+  }
 
   render() {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
@@ -54,7 +57,7 @@ class EditCardModal extends Component {
                     <Button>
                       <Text>Cancel</Text>
                     </Button>
-                    <Button>
+                    <Button onPress = {this.handleDeleteAndClear}>
                       <Text>Delete</Text>
                     </Button>
                   </View>

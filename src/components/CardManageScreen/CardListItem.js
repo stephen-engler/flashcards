@@ -22,12 +22,30 @@ class CardListItem extends Component {
   };
 
   handleEdit = (editCard) =>{
+    //need to also send teh deck to get the updated list
+    const payload = {
+      card: editCard,
+      deck: this.props.state.cardList.deck
+    }
     this.setState({
       modalVisible: false
     })
     this.props.dispatch({
-      type: 'EDIT_CARD',
-      payload: editCard
+      type: 'UPDATE_CARD',
+      payload: payload
+    })
+  }
+  handleDelete = (deleteCard)=>{
+    const payload = {
+      card: deleteCard,
+      deck: this.props.state.cardList.deck
+    }
+    this.setState({
+      modalVisible: false
+    })
+    this.props.dispatch({
+      type: 'DELETE_CARD',
+      payload: payload
     })
   }
 
@@ -44,6 +62,7 @@ class CardListItem extends Component {
             modalVisible={this.state.modalVisible} 
             card={this.props.card}
             handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete}
             />
         </View>
       </TouchableWithoutFeedback>;

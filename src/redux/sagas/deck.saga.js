@@ -8,7 +8,7 @@ const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
 };
-
+//GET_USER_DECKS
 export function* getDecksSaga(action){
     try{
         //gets all decks from server
@@ -27,7 +27,7 @@ export function* getDecksSaga(action){
         yield console.log('an error getting')
     }
 }
-
+//USER_SELECTED_DECK
 export function* getCardsSaga(action){
     try{
         //sets cardList reducer deck object to chosen deck--action.payload is the deck object
@@ -41,7 +41,7 @@ export function* getCardsSaga(action){
             `http://localhost:5000/api/deck/cards/${action.payload.id}`,
             config
         )
-        //Sets teh cardList reducer card array to the response data
+        //Sets the cardList reducer card array to the response data
         yield put({
             type: 'ALL_CARDS',
             payload: cards.data
@@ -52,7 +52,7 @@ export function* getCardsSaga(action){
         yield console.log('an error getting the cards ', error);
     }
 }
-
+//ADD_DECK_NAME
 export function* addDeckSaga(action){
     try{
         //post route to server to add deck, server expects an object {deck_name: 'name of deck'}
@@ -74,7 +74,7 @@ export function* addDeckSaga(action){
         yield console.log('an error adding deck ', error);
     }
 }
-
+//ADD_CARD
 export function* addCardSaga(action){
     try{
         //post route to the server to add card
