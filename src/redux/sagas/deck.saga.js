@@ -38,7 +38,7 @@ export function* getCardsSaga(action){
         //gets all cards from the server, action.payload.id is the id of the deck
         const cards = yield call(
             axios.get,
-            `http://localhost:5000/api/deck/cards/${action.payload.id}`,
+            `http://localhost:5000/api/card/${action.payload.id}`,
             config
         )
         //Sets the cardList reducer card array to the response data
@@ -81,7 +81,7 @@ export function* addCardSaga(action){
         //action.payload is an object with keys of {answer: 'the answer', prompt: 'the prompt', deck: {the deck object}}
         yield call(
             axios.post,
-            "http://localhost:5000/api/deck/card",
+            "http://localhost:5000/api/card",
             action.payload,
             config
         )

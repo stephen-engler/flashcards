@@ -24,9 +24,28 @@ class EditCardModal extends Component {
 
   handleEditAndClear = () => {
       this.props.handleEdit(this.state)
+      this.setState({
+        prompt: '',
+        answer: '',
+        id: '',
+      })
   };
   handleDeleteAndClear = () =>{
     this.props.handleDelete(this.state)
+    this.setState({ 
+      prompt: "", 
+      answer: "", 
+      id: "" 
+      });
+  }
+
+  handleCancelAndClear = () =>{
+    this.props.handleCancel();
+    this.setState({
+      prompt: '',
+      answer: '',
+      id: '',
+    })
   }
 
   render() {
@@ -54,7 +73,7 @@ class EditCardModal extends Component {
                     <Button style={{ alignSelf: "center" }} onPress={this.handleEditAndClear}>
                       <Text>Edit</Text>
                     </Button>
-                    <Button>
+                    <Button onPress = {this.handleCancelAndClear}>
                       <Text>Cancel</Text>
                     </Button>
                     <Button onPress = {this.handleDeleteAndClear}>

@@ -27,20 +27,18 @@ class CardManageScreen extends Component {
     modalVisible: false,
   };
 
-  // componentDidUpdate() {
-  //   LayoutAnimation.spring();
-  // }
+ 
   handlePress = () => {
     this.props.dispatch(push("/study"));
   };
   handleSubmit=(payload)=>{
-    return ()=>{
+
       this.props.dispatch({
         type: 'ADD_CARD',
         payload: {answer: payload.answer, prompt: payload.prompt, deck: this.props.state.cardList.deck},
       })
       this.setState({ modalVisible: false });
-    }
+  
   }
 
   render() {

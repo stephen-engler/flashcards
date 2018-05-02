@@ -14,7 +14,7 @@ export function* updateCardSaga(action){
     try{
         yield call(
             axios.put,
-            `http://localhost:5000/api/deck/card/${action.payload.card.id}`,
+            `http://localhost:5000/api/card/${action.payload.card.id}`,
             action.payload.card,
             config,
         )
@@ -35,7 +35,7 @@ export function* deleteCardSaga(action){
     try{
         yield call(
             axios.delete,
-            `http://localhost:5000/api/deck/card/${action.payload.card.id}`,
+            `http://localhost:5000/api/card/${action.payload.card.id}`,
             config,
         )
         yield put({

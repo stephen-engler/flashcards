@@ -49,6 +49,12 @@ class CardListItem extends Component {
     })
   }
 
+  handleCancel = () =>{
+    this.setState({
+      modalVisible: false,
+    })
+  }
+
   render(props) {
     console.log("in list item", this.props);
     return <TouchableWithoutFeedback onPress={this.handlePress}>
@@ -63,6 +69,7 @@ class CardListItem extends Component {
             card={this.props.card}
             handleEdit={this.handleEdit}
             handleDelete={this.handleDelete}
+            handleCancel={this.handleCancel}
             />
         </View>
       </TouchableWithoutFeedback>;
