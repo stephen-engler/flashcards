@@ -7,8 +7,12 @@ import {
   LayoutAnimation
 } from "react-native";
 import { connect } from "react-redux";
+import EditDeleteDeckModal from './EditDeleteDeckModal';
 
 class ListItem extends Component{
+    state = {
+        modalVisible: false,
+    }
 
     handlePress=()=>{
         console.log('pressed');
@@ -17,11 +21,26 @@ class ListItem extends Component{
             payload: this.props.deck
         })
     }
+    hideModal = () =>{
+        this.setState({
+            modalVisible: false
+        })
+    }
+    handleEdit = (deck) =>{
+        console.log('in handle edit ', deck);
+        this.hideModal();
+    }
+    handleDelete = (deck) =>{
+        console.log('in handle delete ', deck);
+        this.hideModal();
+    }
 
     render(props){
         console.log('in list item', props);
         return (
-                <TouchableWithoutFeedback onPress={this.handlePress}>
+                <TouchableWithoutFeedback 
+                    onPress={this.handlePress} 
+                    onLongPress={()=>this.setState({modalVisible:true})}>
                 <View>
                     <Card>
                         <CardItem>
@@ -30,6 +49,13 @@ class ListItem extends Component{
                             </Text>
                         </CardItem>
                     </Card>
+                    <EditDeleteDeckModal 
+                        deck={this.props.deck} 
+                        modalVisible={this.state.modalVisible}
+                        hideModal={this.hideModal}
+                        handleEdit={this.handleEdit}
+                        handleDelete={this.handleDelete}
+                        />
                 </View>
                 </TouchableWithoutFeedback>
         );

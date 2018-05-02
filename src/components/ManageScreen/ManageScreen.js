@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {push} from 'react-router-redux';
-//import { Icon } from 'react-native-elements';
 import { Platform, StyleSheet, LayoutAnimation, TouchableHighlight } from "react-native";
 import {
   Icon,
@@ -11,21 +10,15 @@ import {
   Content,
   View,
   Header,
-  Card,
-  CardItem,
   Title,
   Left,
-  Label,
-  Input,
   Right,
   Text,
   Body,
-  List,
-  ListItem,
 } from "native-base";
 import DeckList from './DeckList';
-import {Modal} from 'react-native'
 import { connect } from "react-redux";
+import AddDeckModal from './AddDeckModal';
 
 
 
@@ -41,14 +34,13 @@ class ManageScreen extends Component {
     });
   }
 
-  handlePress=()=>{
+  handleAddDeck=(deck_name)=>{
     this.props.dispatch({
       type: 'ADD_DECK_NAME',
-      payload: this.state.deck_name,
+      payload: deck_name,
     })
     this.setState({
       modalVisible: false,
-      deck_name: ''
     })
   }
 
@@ -77,32 +69,10 @@ class ManageScreen extends Component {
         <Content>
           <DeckList />
         </Content>
-
-        <Modal animationType="slide" transparent={true} visible={this.state.modalVisible} onRequestClose={() => {
-            console.log("modal closed");
-          }}>
-          <View style={{ marginTop: 100, paddingRight: 10, paddingLeft: 10, flex: 1 }}>
-            <View>
-              <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
-                <CardItem style={{ height: 300 }}>
-                  <Form>
-                    <Item floatingLabel style={{ width: 300 }}>
-                      <Label>Deck Name</Label>
-                      <Input value={this.state.deck_name} style={{ alignSelf: "center" }} autoCapitalize={"none"} onChangeText={deck_name => this.setState(
-                            { deck_name }
-                          )} label={"Deck Name"} />
-                    </Item>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                      <Button style={{ alignSelf: "center" }} onPress={this.handlePress}>
-                        <Text>Submit</Text>
-                      </Button>
-                    </View>
-                  </Form>
-                </CardItem>
-              </Card>
-            </View>
-          </View>
-        </Modal>
+        <AddDeckModal 
+          modalVisible={this.state.modalVisible} 
+          handleAddDeck={this.handleAddDeck}
+        />
       </Container>;
   }
 }
