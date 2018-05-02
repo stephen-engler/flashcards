@@ -23,13 +23,8 @@ class EditCardModal extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    console.log('next props ', nextProps);
     const {id, prompt, answer} = nextProps.card
     return {id, prompt, answer}
-  }
-
-  handleCancelAndClear = () =>{
-    this.props.handleCancel();
   }
 
   render() {
@@ -57,7 +52,7 @@ class EditCardModal extends Component {
                     <Button style={{ alignSelf: "center" }} onPress={() => this.props.handleEdit(this.state)}>
                       <Text>Edit</Text>
                     </Button>
-                    <Button onPress={() => this.props.handleCancel()}>
+                    <Button onPress={() => this.props.hideModal()}>
                       <Text>Cancel</Text>
                     </Button>
                     <Button onPress={() => this.props.handleDelete(this.state)}>

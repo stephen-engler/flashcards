@@ -28,6 +28,10 @@ class ListItem extends Component{
     }
     handleEdit = (deck) =>{
         console.log('in handle edit ', deck);
+        this.props.dispatch({
+            type: 'UPDATE_DECK',
+            payload: deck,
+        })
         this.hideModal();
     }
     handleDelete = (deck) =>{
@@ -45,22 +49,22 @@ class ListItem extends Component{
                 <TouchableWithoutFeedback 
                     onPress={this.handlePress} 
                     onLongPress={()=>this.setState({modalVisible:true})}>
-                <View>
-                    <Card>
-                        <CardItem>
-                            <Text style={styles.textStyle}>
-                                {this.props.deck.deck_name}
-                            </Text>
-                        </CardItem>
-                    </Card>
-                    <EditDeleteDeckModal 
-                        deck={this.props.deck} 
-                        modalVisible={this.state.modalVisible}
-                        hideModal={this.hideModal}
-                        handleEdit={this.handleEdit}
-                        handleDelete={this.handleDelete}
-                        />
-                </View>
+                    <View>
+                        <Card>
+                            <CardItem>
+                                <Text style={styles.textStyle}>
+                                    {this.props.deck.deck_name}
+                                </Text>
+                            </CardItem>
+                        </Card>
+                        <EditDeleteDeckModal 
+                            deck={this.props.deck} 
+                            modalVisible={this.state.modalVisible}
+                            hideModal={this.hideModal}
+                            handleEdit={this.handleEdit}
+                            handleDelete={this.handleDelete}
+                            />
+                    </View>
                 </TouchableWithoutFeedback>
         );
     }

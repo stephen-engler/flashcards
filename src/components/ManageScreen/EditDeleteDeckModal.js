@@ -25,19 +25,7 @@ class EditDeleteDeckModal extends Component {
       
       return {deck_name, id, user_id}
   }
-  handleEdit = () => {
-      this.props.handleEdit(this.state);
-      this.props.hideModal();
-  };
 
-  handleCancel = ()=>{
-      this.props.hideModal();
-  }
-
-  handleDelete = () =>{
-      this.props.handleDelete(this.state);
-      this.props.hideModal();
-  }
 
 
   render() {
@@ -56,13 +44,13 @@ class EditDeleteDeckModal extends Component {
                         )} label={"Deck Name"} />
                   </Item>
                   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button style={{ alignSelf: "center" }} onPress={this.handleEdit}>
+                    <Button style={{ alignSelf: "center" }} onPress={()=>this.props.handleEdit(this.state)}>
                       <Text>Edit</Text>
                     </Button>
-                    <Button style={{ alignSelf: "center" }} onPress={this.handleCancel}>
+                    <Button style={{ alignSelf: "center" }} onPress={()=>this.props.hideModal()}>
                       <Text>Cancel</Text>
                     </Button>
-                    <Button style={{ alignSelf: "center" }} onPress={this.handleDelete}>
+                    <Button style={{ alignSelf: "center" }} onPress={()=>this.props.handleDelete(this.state)}>
                       <Text>Delete</Text>
                     </Button>
                   </View>

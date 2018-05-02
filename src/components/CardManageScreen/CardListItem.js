@@ -27,9 +27,7 @@ class CardListItem extends Component {
       card: editCard,
       deck: this.props.state.cardList.deck
     }
-    this.setState({
-      modalVisible: false
-    })
+    this.hideModal();
     this.props.dispatch({
       type: 'UPDATE_CARD',
       payload: payload
@@ -40,16 +38,14 @@ class CardListItem extends Component {
       card: deleteCard,
       deck: this.props.state.cardList.deck
     }
-    this.setState({
-      modalVisible: false
-    })
+    this.hideModal();
     this.props.dispatch({
       type: 'DELETE_CARD',
       payload: payload
     })
   }
 
-  handleCancel = () =>{
+  hideModal = () =>{
     this.setState({
       modalVisible: false,
     })
@@ -69,7 +65,7 @@ class CardListItem extends Component {
             card={this.props.card}
             handleEdit={this.handleEdit}
             handleDelete={this.handleDelete}
-            handleCancel={this.handleCancel}
+            hideModal={this.hideModal}
             />
         </View>
       </TouchableWithoutFeedback>;

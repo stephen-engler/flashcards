@@ -62,3 +62,20 @@ export function* deleteDeckSaga(action){
         yield console.log('an error in delete card saga ', error);
     }
 }
+
+//UPDATE_DECK
+export function* updateDeckSaga(action){
+    try{
+        yield call(
+            axios.put,
+            `http://localhost:5000/api/deck/${action.payload.id}`,
+            action.payload,
+            config
+        )
+        yield put({
+            type: 'GET_USER_DECKS'
+        })
+    }catch(error){
+        yield console.log('error in update deck saga ', error);
+    }
+}
