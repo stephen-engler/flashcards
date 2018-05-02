@@ -46,3 +46,19 @@ export function* deleteCardSaga(action){
         yield console.log('an error in delete card saga ', error);
     }
 }
+
+//DELETE_DECK 
+export function* deleteDeckSaga(action){
+    try{
+        yield call(axios.delete, 
+        `http://localhost:5000/api/deck/${action.payload.id}`,
+        config,
+        )
+        yield put({
+            type: 'GET_USER_DECKS',
+            payload: action.payload
+        })
+    }catch(error){
+        yield console.log('an error in delete card saga ', error);
+    }
+}

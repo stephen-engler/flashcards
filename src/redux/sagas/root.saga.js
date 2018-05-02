@@ -6,7 +6,7 @@ import {
   
 } from "./user.saga";
 import { getDecksSaga, getCardsSaga, addDeckSaga, addCardSaga } from "./deck.saga";
-import {updateCardSaga, deleteCardSaga} from './updateDelete.saga'
+import {updateCardSaga, deleteCardSaga, deleteDeckSaga} from './updateDelete.saga'
 export default function* rootSaga() {
   yield takeEvery("LOGIN_USER", loginUserSaga);
   yield takeEvery("REGISTER_USER", registerUserSaga);
@@ -17,4 +17,5 @@ export default function* rootSaga() {
   yield takeEvery('ADD_CARD', addCardSaga);
   yield takeEvery('UPDATE_CARD', updateCardSaga);
   yield takeEvery('DELETE_CARD', deleteCardSaga);
+  yield takeEvery('DELETE_DECK', deleteDeckSaga);
 }

@@ -16,36 +16,20 @@ class EditCardModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prompt: this.props.card.prompt,
-      answer: this.props.card.answer,
-      id: this.props.card.id
+      prompt: '',
+      answer: '',
+      id: ''
     };
   }
 
-  handleEditAndClear = () => {
-      this.props.handleEdit(this.state)
-      this.setState({
-        prompt: '',
-        answer: '',
-        id: '',
-      })
-  };
-  handleDeleteAndClear = () =>{
-    this.props.handleDelete(this.state)
-    this.setState({ 
-      prompt: "", 
-      answer: "", 
-      id: "" 
-      });
+  static getDerivedStateFromProps(nextProps, prevState){
+    console.log('next props ', nextProps);
+    const {id, prompt, answer} = nextProps.card
+    return {id, prompt, answer}
   }
 
   handleCancelAndClear = () =>{
     this.props.handleCancel();
-    this.setState({
-      prompt: '',
-      answer: '',
-      id: '',
-    })
   }
 
   render() {
@@ -70,13 +54,13 @@ class EditCardModal extends Component {
                         )} label={"Answer"} />
                   </Item>
                   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button style={{ alignSelf: "center" }} onPress={this.handleEditAndClear}>
+                    <Button style={{ alignSelf: "center" }} onPress={() => this.props.handleEdit(this.state)}>
                       <Text>Edit</Text>
                     </Button>
-                    <Button onPress = {this.handleCancelAndClear}>
+                    <Button onPress={() => this.props.handleCancel()}>
                       <Text>Cancel</Text>
                     </Button>
-                    <Button onPress = {this.handleDeleteAndClear}>
+                    <Button onPress={() => this.props.handleDelete(this.state)}>
                       <Text>Delete</Text>
                     </Button>
                   </View>

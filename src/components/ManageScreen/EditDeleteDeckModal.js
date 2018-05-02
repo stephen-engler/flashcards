@@ -14,10 +14,17 @@ import {
 
 class EditDeleteDeckModal extends Component {
   state = {
-    deck_name: this.props.deck.deck_name,
-    id: this.props.deck.id,
-    user_id: this.props.deck.user_id,
+    deck_name: '',
+    id: '',
+    user_id: '',
   };
+
+    //refreshes state each time the componenet gets new props
+  static getDerivedStateFromProps(nextProps, prevState){
+      const { deck_name, id, user_id} = nextProps.deck;
+      
+      return {deck_name, id, user_id}
+  }
   handleEdit = () => {
       this.props.handleEdit(this.state);
       this.props.hideModal();

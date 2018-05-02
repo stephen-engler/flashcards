@@ -32,6 +32,10 @@ class ListItem extends Component{
     }
     handleDelete = (deck) =>{
         console.log('in handle delete ', deck);
+        this.props.dispatch({
+            type: 'DELETE_DECK',
+            payload: deck,
+        })
         this.hideModal();
     }
 
