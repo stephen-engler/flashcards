@@ -32,15 +32,14 @@ class FlashcardItem extends Component{
     renderCard = item => {
         if (this.state.showAnswer) {
         return (
-            <CardItem>
-                <Text>{item.prompt}</Text>
-                <Text>{item.answer}</Text>
+            <CardItem style={styles.cardStyle}>
+                <Text style={styles.textStyle}>{item.answer}</Text>
             </CardItem>
         );
         }
         return (
-            <CardItem>
-                <Text>{item.prompt}</Text>
+            <CardItem style={styles.cardStyle}>
+                <Text style={styles.textStyle}>{item.prompt}</Text>
             </CardItem>
         );
     };
@@ -49,13 +48,24 @@ class FlashcardItem extends Component{
         return(
             <TouchableWithoutFeedback 
               onPress={this.handlePress}>
-                <Card style={{ elevation: 3, height: 300 }}>
+                <Card style={{ elevation: 3, height: 300, shadowColor: 'red' }}>
                   {this.renderCard(item)}
                 </Card>
             </TouchableWithoutFeedback>
         )
     }
 }
+
+const styles = {
+  textStyle: {
+    fontSize: 24
+  },
+  cardStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+};
 
 const mapStateToProps = (state)=>({
     state

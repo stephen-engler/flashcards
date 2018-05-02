@@ -24,6 +24,7 @@ import StartScreen from "./src/components/StartScreen/StartScreen";
 import ManageScreen from "./src/components/ManageScreen/ManageScreen";
 import CardManageScreen from "./src/components/CardManageScreen/CardManageScreen";
 
+
 const history = createMemoryHistory();
 
 const middleware = routerMiddleware(history);

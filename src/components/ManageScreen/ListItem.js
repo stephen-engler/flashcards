@@ -9,9 +9,7 @@ import {
 import { connect } from "react-redux";
 
 class ListItem extends Component{
-    componentDidUpdate(){
-        LayoutAnimation.spring();
-    }
+
     handlePress=()=>{
         console.log('pressed');
         this.props.dispatch({

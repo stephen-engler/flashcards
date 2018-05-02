@@ -1,49 +1,70 @@
 import React, { Component } from "react";
 import {
-  Platform,
-  StyleSheet,
   LayoutAnimation,
-  TouchableHighlight
 } from "react-native";
 import {
   Button,
-  Footer,
-  FooterTab,
   Container,
   Content,
   View,
   Header,
   Title,
   Left,
+  Label,
   Right,
-  Icon,
   Text,
   Body,
-  List,
-  ListItem
+  Footer,
+  FooterTab,
 } from "native-base";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import CardList from './CardList';
+import AddCardModal from './AddCardModal';
 
 class CardManageScreen extends Component {
-  componentDidUpdate() {
-    LayoutAnimation.spring();
-  }
-  handlePress=()=>{
+  state = {
+    modalVisible: false,
+  };
+
+  // componentDidUpdate() {
+  //   LayoutAnimation.spring();
+  // }
+  handlePress = () => {
     this.props.dispatch(push("/study"));
+  };
+  handleSubmit=(payload)=>{
+    return ()=>{
+      this.props.dispatch({
+        type: 'ADD_CARD',
+        payload: {answer: payload.answer, prompt: payload.prompt, deck: this.props.state.cardList.deck},
+      })
+      this.setState({ modalVisible: false });
+    }
   }
 
   render() {
-    return <Container>
+    return 
+    <Container>
         <Header>
           <Body>
             <Text>{this.props.state.cardList.deck.deck_name}</Text>
           </Body>
+          <Right>
+            <Button transparent onPress={() => this.setState({
+                  modalVisible: true
+                })}>
+              <Text>Add</Text>
+            </Button>
+          </Right>
         </Header>
         <Content>
           <CardList />
         </Content>
+        <AddCardModal 
+          modalVisible={this.state.modalVisible} 
+          handleSubmit={this.handleSubmit} 
+        />
         <Footer>
           <FooterTab>
             <Button full primary onPress={this.handlePress}>
