@@ -22,10 +22,18 @@ class AddCardModal extends Component {
     };
   }
 
+  handleSubmitAndClear = () => {
+    this.props.handleSubmit(this.state)
+    this.setState({
+      prompt: '',
+      answer: '',
+    })
+  }
+
   render() {
     return(
     <Modal
-      animationType="slide"
+      animationType="none"
       transparent={true}
       visible={this.props.modalVisible}
       onRequestClose={() => {
@@ -68,7 +76,7 @@ class AddCardModal extends Component {
                 >
                   <Button
                     style={{ alignSelf: "center" }}
-                    onPress={this.props.handleSubmit(this.state)}
+                    onPress={this.handleSubmitAndClear}
                   >
                     <Text>Submit</Text>
                   </Button>

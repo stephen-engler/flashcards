@@ -6,33 +6,47 @@ import {
   View,
   LayoutAnimation
 } from "react-native";
+import EditCardModal from './EditCardModal';
 import { connect } from "react-redux";
 
 class CardListItem extends Component {
-  componentDidUpdate() {
-    LayoutAnimation.spring();
+  state={
+    modalVisible: false,
   }
+
   handlePress = () => {
     console.log("pressed");
-    // this.props.dispatch({
-    //   type: "USER_SELECTED_DECK",
-    //   payload: this.props.deck
-    // });
+    this.setState({
+      modalVisible: true,
+    })
   };
+
+  handleEdit = (editCard) =>{
+    this.setState({
+      modalVisible: false
+    })
+    this.props.dispatch({
+      type: 'EDIT_CARD',
+      payload: editCard
+    })
+  }
 
   render(props) {
     console.log("in list item", this.props);
-    return (
-      <TouchableWithoutFeedback onPress={this.handlePress}>
+    return <TouchableWithoutFeedback onPress={this.handlePress}>
         <View>
           <Card>
             <CardItem>
               <Text style={styles.textStyle}>{this.props.card.prompt}</Text>
             </CardItem>
           </Card>
+          <EditCardModal 
+            modalVisible={this.state.modalVisible} 
+            card={this.props.card}
+            handleEdit={this.handleEdit}
+            />
         </View>
-      </TouchableWithoutFeedback>
-    );
+      </TouchableWithoutFeedback>;
   }
 }
 

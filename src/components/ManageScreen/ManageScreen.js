@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import {push} from 'react-router-redux';
-import { Icon } from 'react-native-elements';
+//import { Icon } from 'react-native-elements';
 import { Platform, StyleSheet, LayoutAnimation, TouchableHighlight } from "react-native";
 import {
+  Icon,
   Button,
   Container,
   Form,
@@ -58,6 +59,7 @@ class ManageScreen extends Component {
           <Left>
             <Button transparent>
               <Text>Back</Text>
+              <Icon ios="ios-menu" />
             </Button>
           </Left>
 
@@ -68,7 +70,7 @@ class ManageScreen extends Component {
             <Button transparent onPress={() => this.setState({
                   modalVisible: true
                 })}>
-              <Text>Add</Text>
+              <Icon name="ios-add" />
             </Button>
           </Right>
         </Header>
@@ -84,20 +86,14 @@ class ManageScreen extends Component {
               <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
                 <CardItem style={{ height: 300 }}>
                   <Form>
-                    <Item floatingLabel style={{width: 300}}>
+                    <Item floatingLabel style={{ width: 300 }}>
                       <Label>Deck Name</Label>
-                      <Input 
-                        value={this.state.deck_name} 
-                        style={{alignSelf:'center'}}
-                        autoCapitalize={"none"} 
-                        onChangeText={deck_name => this.setState(
+                      <Input value={this.state.deck_name} style={{ alignSelf: "center" }} autoCapitalize={"none"} onChangeText={deck_name => this.setState(
                             { deck_name }
-                          )} 
-                        label={"Deck Name"} 
-                      />
+                          )} label={"Deck Name"} />
                     </Item>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                      <Button style={{alignSelf: 'center'}} onPress={this.handlePress}>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                      <Button style={{ alignSelf: "center" }} onPress={this.handlePress}>
                         <Text>Submit</Text>
                       </Button>
                     </View>

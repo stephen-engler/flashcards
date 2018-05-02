@@ -44,7 +44,7 @@ class CardManageScreen extends Component {
   }
 
   render() {
-    return 
+    return (
     <Container>
         <Header>
           <Body>
@@ -72,7 +72,8 @@ class CardManageScreen extends Component {
             </Button>
           </FooterTab>
         </Footer>
-      </Container>;
+    </Container>
+    );
   }
 }
 
