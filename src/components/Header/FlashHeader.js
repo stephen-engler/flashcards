@@ -8,12 +8,13 @@ import {
     Text,
     Button,
 } from 'native-base';
+import {headerBackgroundColor, headerTextStyle, iconStyle} from '../styles/styles'
 
 
 const FlashHeader =(props)=>{
-    const {headerStyle, iconStyle, headerTextStyle} = styles;
+
     return (
-    <Header style={headerStyle}>
+    <Header style={headerBackgroundColor}>
         <Left>
             {props.profile ?(
                 <Button transparent onPress={()=>props.showProfileModal()}>
@@ -43,27 +44,5 @@ const FlashHeader =(props)=>{
     </Header>
     );
 }
-
-
-const styles = {
-  headerStyle: {
-    backgroundColor: "#ff5722"
-  },
-  headerTextStyle: {
-    color: "black",
-    fontSize: 40,
-    fontWeight: "500",
-    textShadowOffset: {
-      width: 0,
-      height: 2
-    },
-    textShadowRadius: 1,
-    textShadowColor: "#26a69a"
-  },
-  iconStyle: {
-    color: "#26a69a",
-    fontSize: 40,
-  }
-};
 
 export default FlashHeader;
