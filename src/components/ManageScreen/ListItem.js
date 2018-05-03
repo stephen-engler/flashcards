@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import EditDeleteDeckModal from '../Modals/EditDeleteDeckModal';
+import {listItemTextStyle} from '../styles/styles'
 
 class ListItem extends Component{
     state = {
@@ -62,7 +63,7 @@ class ListItem extends Component{
                     <View>
                         <Card>
                             <CardItem>
-                                <Text style={styles.textStyle}>
+                                <Text style={listItemTextStyle}>
                                     {this.props.deck.deck_name}
                                 </Text>
                             </CardItem>
@@ -79,13 +80,6 @@ class ListItem extends Component{
         );
     }
 }
-
-const styles = {
-    textStyle:{
-        fontSize: 24,
-    }
-}
-
 
 const mapStateToProps=(state)=>({
     state

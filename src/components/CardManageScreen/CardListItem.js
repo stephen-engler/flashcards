@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import EditCardModal from '../Modals/EditCardModal';
 import { connect } from "react-redux";
+import {listItemTextStyle} from '../styles/styles'
 
 class CardListItem extends Component {
   state={
@@ -57,7 +58,7 @@ class CardListItem extends Component {
         <View>
           <Card>
             <CardItem>
-              <Text style={styles.textStyle}>{this.props.card.prompt}</Text>
+              <Text style={listItemTextStyle}>{this.props.card.prompt}</Text>
             </CardItem>
           </Card>
           <EditCardModal 
@@ -72,11 +73,6 @@ class CardListItem extends Component {
   }
 }
 
-const styles = {
-  textStyle: {
-    fontSize: 24
-  }
-};
 
 const mapStateToProps = state => ({
   state

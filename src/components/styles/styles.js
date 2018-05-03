@@ -68,3 +68,24 @@ export const iconStyle = {
     color: "#26a69a", 
     fontSize: 40 
 };
+
+//flash card style
+export const flashCardTextStyle = { 
+    fontSize: 32 
+};
+
+export const flashCardItemStyle = { 
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center" 
+};
+
+export const flashCardStyle = { 
+    elevation: 3, 
+    height: 300, 
+    shadowColor: "red" 
+};
+
+export const listItemTextStyle = {
+    fontSize: 30
+}

@@ -52,11 +52,6 @@ class StudyScreen extends Component {
   render() {
     return (
         <Container>
-          {/* <Header style={styles.headerStyle}>
-            <Body>
-              <Text style={styles.headerTextStyle}>{this.props.state.cardList.deck.deck_name}</Text>
-            </Body>
-          </Header> */}
           <FlashHeader 
           goHome={this.goHome}
           goBack={this.goBack}
@@ -76,21 +71,6 @@ class StudyScreen extends Component {
   }
 }
 
-const styles = {
-  headerStyle: {
-    backgroundColor: "orange"
-  },
-  headerTextStyle: {
-    color: "red",
-    fontSize: 24,
-    fontWeight: "500",
-    textShadowOffset: {
-      width: 0,
-      height: 2
-    },
-    textShadowColor: '#000',
-  }
-};
 
 const mapStateToProps = state => ({
   state
