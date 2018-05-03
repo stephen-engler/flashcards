@@ -19,8 +19,6 @@ class FlashcardItem extends Component{
         showAnswer: false
     };
     static getDerivedStateFromProps(nextProps, prevState){
-        console.log('next props ', nextProps);
-        console.log('prevState ', prevState);
         return {showAnswer: false};
     }
     handlePress = () => {

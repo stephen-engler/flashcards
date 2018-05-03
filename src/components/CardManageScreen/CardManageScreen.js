@@ -3,10 +3,8 @@ import {
   LayoutAnimation,
 } from "react-native";
 import {
-  Button,
   Container,
   Content,
-  View,
   Header,
   Title,
   Left,
@@ -17,11 +15,13 @@ import {
   Footer,
   FooterTab,
 } from "native-base";
+import {Button, View, TouchableHighlight} from 'react-native'
 import { connect } from "react-redux";
 import { push, goBack } from "react-router-redux";
 import CardList from './CardList';
 import AddCardModal from '../Modals/AddCardModal';
 import FlashHeader from '../Header/FlashHeader';
+import {appBackGroundColor, startButtonTextStyle} from '../styles/styles'
 
 class CardManageScreen extends Component {
   state = {
@@ -60,38 +60,27 @@ class CardManageScreen extends Component {
   };
 
   render() {
-    return (
-      <Container>
-        <FlashHeader 
-        showModal={this.showModal}
-        goBack={this.goBack}
-        title = {this.props.state.cardList.deck.deck_name}
-        add={true}
-        />
+    return <Container style={appBackGroundColor}>
+        <FlashHeader showModal={this.showModal} goBack={this.goBack} title={this.props.state.cardList.deck.deck_name} add={true} />
         <Content>
           <CardList />
         </Content>
-        <AddCardModal
-          modalVisible={this.state.modalVisible}
-          handleSubmit={this.handleSubmit}
-          hideModal={this.hideModal}
-        />
+        <AddCardModal modalVisible={this.state.modalVisible} handleSubmit={this.handleSubmit} hideModal={this.hideModal} />
         <Footer>
           <FooterTab>
-            <Button full primary onPress={this.handlePress}>
-              <Text style={styles.buttonStyle}>Start</Text>
-            </Button>
+            {/* <Button full primary onPress={this.handlePress}>
+              <Text style={startButtonTextStyle}>Start</Text>
+            </Button> */}
+            <TouchableHighlight onPress={this.handlePress} style={{ flex: 1 }}>
+              <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#008ba3" }}>
+                <Text style={{ fontSize: 40, color: "#fafafa" }}>
+                  Start
+                </Text>
+              </View>
+            </TouchableHighlight>
           </FooterTab>
         </Footer>
-      </Container>
-    );
-  }
-}
-
-const styles = {
-  buttonStyle:{
-    fontSize: 20,
-    color: "white"
+      </Container>;
   }
 }
 

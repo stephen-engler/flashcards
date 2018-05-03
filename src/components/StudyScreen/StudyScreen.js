@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import FlashcardItem from './FlashcardItem';
 import {push, goBack} from 'react-router-redux';
 import FlashHeader from '../Header/FlashHeader';
+import {appBackGroundColor} from '../styles/styles'
 
 
 class StudyScreen extends Component {
@@ -27,17 +28,26 @@ class StudyScreen extends Component {
 
   renderEmptyDeck=()=>{
     return (
-    <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
-      <CardItem>
-        <Button onPress={()=>this.props.dispatch(push('/cards'))}>
-          <Text>View Deck</Text>
-        </Button>
-        <Button onPress={()=>this.props.dispatch(push('/manage'))}>
-          <Text>Go home</Text>
-        </Button>
-      </CardItem>
-    </Card>
     
+      // <Card>
+      //   <CardItem style={{height: 200, justifyContent: 'center', alignContent: 'center'}}>
+      // <Button onPress={()=>this.props.dispatch(push('/cards'))}>
+      //   <Text>View Deck</Text>
+      // </Button>
+
+      //   </CardItem>
+      // </Card>
+      <View style={{ flex: 1, justifyContent: "space-between", alignItems: "center", alignSelf: "center", paddingTop: 200 }}>
+
+          <Button onPress={() => this.props.dispatch(push("/cards"))}>
+            <Text>View Deck</Text>
+          </Button>
+          <View style={{alignSelf: 'center', paddingTop: 15}}>
+            <Button onPress={() => this.props.dispatch(push("/manage"))}>
+              <Text>Go home</Text>
+            </Button>
+          </View>
+      </View>
     );
   } 
 
@@ -51,17 +61,19 @@ class StudyScreen extends Component {
 
   render() {
     return (
-        <Container>
+        <Container style = {appBackGroundColor}>
           <FlashHeader 
           goHome={this.goHome}
           goBack={this.goBack}
           title={this.props.state.cardList.deck.deck_name}
           />
-          <View>
+          <View style={{flex: 1}}>
             <DeckSwiper 
               dataSource={this.props.state.cardList.cardList} 
               renderEmpty={this.renderEmptyDeck}
               looping={false}
+              onSwipeRight={item=>console.log("swipped right ", item)}
+              onSwipeLeft={item=>console.log('swipped left ', item)}
               renderItem={item => <FlashcardItem item={item} 
               />} 
             />

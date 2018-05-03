@@ -21,6 +21,7 @@ import { connect } from "react-redux";
 import AddDeckModal from '../Modals/AddDeckModal';
 import ProfileModal from '../Modals/ProfileModal';
 import FlashHeader from '../Header/FlashHeader';
+import {appBackGroundColor} from '../styles/styles'
 
 
 
@@ -75,7 +76,7 @@ class ManageScreen extends Component {
   
   render() {
     
-    return <Container>
+    return <Container style={appBackGroundColor}>
         <FlashHeader 
         goBack={this.goBack}
         showModal={this.showModal}

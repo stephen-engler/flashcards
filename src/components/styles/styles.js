@@ -83,9 +83,23 @@ export const flashCardItemStyle = {
 export const flashCardStyle = { 
     elevation: 3, 
     height: 300, 
-    shadowColor: "red" 
+    shadowColor: "red",
+    marginTop: 40,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 10,
+    borderWidth: 4 
 };
 
 export const listItemTextStyle = {
     fontSize: 30
 }
+
+export const appBackGroundColor = { 
+    backgroundColor: "#e5ffff" 
+};
+
+export const startTextButtonStyle = { 
+    fontSize: 20, 
+    color: "white", 
+};
