@@ -8,7 +8,7 @@ import {
   Alert
 } from "react-native";
 import { connect } from "react-redux";
-import EditDeleteDeckModal from './EditDeleteDeckModal';
+import EditDeleteDeckModal from '../Modals/EditDeleteDeckModal';
 
 class ListItem extends Component{
     state = {

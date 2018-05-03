@@ -18,50 +18,63 @@ import {
   FooterTab,
 } from "native-base";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
+import { push, goBack } from "react-router-redux";
 import CardList from './CardList';
-import AddCardModal from './AddCardModal';
+import AddCardModal from '../Modals/AddCardModal';
+import FlashHeader from '../Header/FlashHeader';
 
 class CardManageScreen extends Component {
   state = {
-    modalVisible: false,
+    modalVisible: false
   };
 
- 
   handlePress = () => {
     this.props.dispatch(push("/study"));
   };
-  handleSubmit=(payload)=>{
+  handleSubmit = payload => {
+    this.props.dispatch({
+      type: "ADD_CARD",
+      payload: {
+        answer: payload.answer,
+        prompt: payload.prompt,
+        deck: this.props.state.cardList.deck
+      }
+    });
+    this.hideModal();
+  };
 
-      this.props.dispatch({
-        type: 'ADD_CARD',
-        payload: {answer: payload.answer, prompt: payload.prompt, deck: this.props.state.cardList.deck},
-      })
-      this.setState({ modalVisible: false });
+  hideModal = () => {
+    this.setState({
+      modalVisible: false
+    });
+  };
   
-  }
+  showModal = () => {
+    this.setState({
+      modalVisible: true
+    });
+  };
+  
+  goBack = () => {
+    this.props.dispatch(goBack());
+  };
 
   render() {
     return (
-    <Container>
-        <Header>
-          <Body>
-            <Text>{this.props.state.cardList.deck.deck_name}</Text>
-          </Body>
-          <Right>
-            <Button transparent onPress={() => this.setState({
-                  modalVisible: true
-                })}>
-              <Text>Add</Text>
-            </Button>
-          </Right>
-        </Header>
+      <Container>
+        <FlashHeader 
+        showModal={this.showModal}
+        goBack={this.goBack}
+        title = {this.props.state.cardList.deck.deck_name}
+        add={true}
+        />
         <Content>
           <CardList />
         </Content>
-        <AddCardModal 
-          modalVisible={this.state.modalVisible} 
-          handleSubmit={this.handleSubmit} 
+        <AddCardModal
+          modalVisible={this.state.modalVisible}
+          handleSubmit={this.handleSubmit}
+          hideModal={this.hideModal}
         />
         <Footer>
           <FooterTab>
@@ -70,7 +83,7 @@ class CardManageScreen extends Component {
             </Button>
           </FooterTab>
         </Footer>
-    </Container>
+      </Container>
     );
   }
 }

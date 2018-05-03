@@ -15,7 +15,8 @@ import { TouchableWithoutFeedback } from "react-native";
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import FlashcardItem from './FlashcardItem';
-import {push} from 'react-router-redux';
+import {push, goBack} from 'react-router-redux';
+import FlashHeader from '../Header/FlashHeader';
 
 
 class StudyScreen extends Component {
@@ -40,14 +41,27 @@ class StudyScreen extends Component {
     );
   } 
 
+  goHome=()=>{
+    this.props.dispatch(push('/manage'));
+  }
+
+  goBack=()=>{
+    this.props.dispatch(goBack());
+  }
+
   render() {
     return (
         <Container>
-          <Header style={styles.headerStyle}>
+          {/* <Header style={styles.headerStyle}>
             <Body>
               <Text style={styles.headerTextStyle}>{this.props.state.cardList.deck.deck_name}</Text>
             </Body>
-          </Header>
+          </Header> */}
+          <FlashHeader 
+          goHome={this.goHome}
+          goBack={this.goBack}
+          title={this.props.state.cardList.deck.deck_name}
+          />
           <View>
             <DeckSwiper 
               dataSource={this.props.state.cardList.cardList} 

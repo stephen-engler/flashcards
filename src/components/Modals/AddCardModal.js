@@ -1,31 +1,32 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
-  View,
-  Text,
-  Card,
-  CardItem,
-  Form,
-  Item,
-  Input,
-  Label,
-  Button
-} from "native-base";
-import { Modal } from "react-native";
+    View,
+    Text,
+    Form,
+    Item,
+    Input,
+    Label,
+    Button,
+    Textarea,
+    Card,
+    CardItem
+} from 'native-base'
+import {Modal} from 'react-native';
 
-class EditCardModal extends Component {
+
+class AddCardModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prompt: '',
-      answer: '',
-      id: ''
+        prompt: '',
+        answer: '',
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    const {id, prompt, answer} = nextProps.card
-    return {id, prompt, answer}
+    return {prompt:'', answer:''}
   }
+
 
   render() {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
@@ -33,8 +34,8 @@ class EditCardModal extends Component {
         }}>
         <View style={{ marginTop: 100, paddingRight: 10, paddingLeft: 10, flex: 1 }}>
           <View>
-            <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
-              <CardItem style={{ height: 300 }}>
+            <Card>
+              <CardItem style={{ height: 300, backgroundColor: "yellow" }}>
                 <Form>
                   <Item floatingLabel style={{ width: 300 }}>
                     <Label>Prompt</Label>
@@ -42,21 +43,21 @@ class EditCardModal extends Component {
                           { prompt }
                         )} label={"Prompt"} />
                   </Item>
-                  <Item floatingLabel style={{ width: 300 }}>
-                    <Label>Answer</Label>
-                    <Input value={this.state.answer} style={{ alignSelf: "center" }} autoCapitalize={"none"} onChangeText={answer => this.setState(
+                  <Item style={{ width: 300 }}>
+                    <Textarea rowSpan={5} bordered placeholder="Answer" value={this.state.answer} style={{ alignSelf: "center" }} autoCapitalize={"none"} style={{ width: 300 }} onChangeText={answer => this.setState(
                           { answer }
-                        )} label={"Answer"} />
+                        )} />
                   </Item>
                   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button style={{ alignSelf: "center" }} onPress={() => this.props.handleEdit(this.state)}>
-                      <Text>Edit</Text>
+                    <Button 
+                      style={{ alignSelf: "center" }} 
+                      onPress={() => this.props.handleSubmit(this.state)}>
+                      <Text>Submit</Text>
                     </Button>
-                    <Button onPress={() => this.props.hideModal()}>
+                    <Button 
+                      style={{ alignSelf: "center" }} 
+                      onPress={() => this.props.hideModal()}>
                       <Text>Cancel</Text>
-                    </Button>
-                    <Button onPress={() => this.props.handleDelete(this.state)}>
-                      <Text>Delete</Text>
                     </Button>
                   </View>
                 </Form>
@@ -68,4 +69,4 @@ class EditCardModal extends Component {
   }
 }
 
-export default EditCardModal;
+export default AddCardModal;

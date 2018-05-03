@@ -6,6 +6,11 @@ class AddDeckModal extends Component{
     state = {
         deck_name: ''
     }
+    //resets state each time the modal recieves new props
+    static getDerivedStateFromProps(nextProps, prevState){
+        return {deck_name: ''}
+    }
+
     handlePress=()=>{
         this.props.handleAddDeck(this.state.deck_name);
         this.setState({
@@ -43,6 +48,11 @@ class AddDeckModal extends Component{
                                 style={{ alignSelf: "center" }} 
                                 onPress={this.handlePress}>
                                 <Text>Submit</Text>
+                            </Button>
+                            <Button
+                                style={{ alignSelf: "center" }} 
+                                onPress={()=>this.props.hideModal()}>
+                                <Text>Cancel</Text>
                             </Button>
                         </View>
                         </Form>

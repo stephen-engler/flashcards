@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {push} from 'react-router-redux';
+import {push, goBack} from 'react-router-redux';
 import { Platform, StyleSheet, LayoutAnimation, TouchableHighlight } from "react-native";
 import {
   Icon,
@@ -18,13 +18,15 @@ import {
 } from "native-base";
 import DeckList from './DeckList';
 import { connect } from "react-redux";
-import AddDeckModal from './AddDeckModal';
+import AddDeckModal from '../Modals/AddDeckModal'
+import FlashHeader from '../Header/FlashHeader';
 
 
 
 class ManageScreen extends Component {
   state = {
     modalVisible: false,
+    profileModalVisible: false,
     deck_name: ''
   };
 
@@ -39,39 +41,48 @@ class ManageScreen extends Component {
       type: 'ADD_DECK_NAME',
       payload: deck_name,
     })
+    this.hideModal();
+  }
+
+  hideModal=()=>{
     this.setState({
       modalVisible: false,
     })
   }
 
+  showModal = ()=>{
+    this.setState({
+      modalVisible: true,
+    })
+  }
+
+  goBack = () =>{
+    this.props.dispatch(goBack())
+  }
+
+  showProfileModal = ()=>{
+    this.setState({
+      profileModalVisible: true,
+    })
+  }
   render() {
     
     return <Container>
-        <Header style={styles.headerStyle}>
-          <Left>
-            <Button transparent>
-              <Text>Back</Text>
-              <Icon ios="ios-menu" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Text style={styles.headerTextStyle}>Decks</Text>
-          </Body>
-          <Right>
-            <Button transparent onPress={() => this.setState({
-                  modalVisible: true
-                })}>
-              <Icon name="ios-add" />
-            </Button>
-          </Right>
-        </Header>
+        <FlashHeader 
+        goBack={this.goBack}
+        showModal={this.showModal}
+        title='Decks'
+        add={true}
+        profile={true}
+        showProfileModal={this.showProfileModal}
+        />
         <Content>
           <DeckList />
         </Content>
         <AddDeckModal 
           modalVisible={this.state.modalVisible} 
           handleAddDeck={this.handleAddDeck}
+          hideModal={this.hideModal}
         />
       </Container>;
   }

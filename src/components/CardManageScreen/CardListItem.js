@@ -6,7 +6,7 @@ import {
   View,
   LayoutAnimation
 } from "react-native";
-import EditCardModal from './EditCardModal';
+import EditCardModal from '../Modals/EditCardModal';
 import { connect } from "react-redux";
 
 class CardListItem extends Component {

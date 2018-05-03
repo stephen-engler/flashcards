@@ -1,34 +1,32 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
-    View,
-    Text,
-    Form,
-    Item,
-    Input,
-    Label,
-    Button,
-    Textarea,
-    Card,
-    CardItem
-} from 'native-base'
-import {Modal} from 'react-native';
+  View,
+  Text,
+  Card,
+  CardItem,
+  Form,
+  Item,
+  Input,
+  Label,
+  Button,
+  Textarea
+} from "native-base";
+import { Modal } from "react-native";
 
-
-class AddCardModal extends Component {
+class EditCardModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        prompt: '',
-        answer: '',
-    };
-  }
-
-  handleSubmitAndClear = () => {
-    this.props.handleSubmit(this.state)
-    this.setState({
       prompt: '',
       answer: '',
-    })
+      id: ''
+    };
+  }
+  //makes sure state is reset each time the component
+  //gets new props
+  static getDerivedStateFromProps(nextProps, prevState){
+    const {id, prompt, answer} = nextProps.card
+    return {id, prompt, answer}
   }
 
   render() {
@@ -37,8 +35,8 @@ class AddCardModal extends Component {
         }}>
         <View style={{ marginTop: 100, paddingRight: 10, paddingLeft: 10, flex: 1 }}>
           <View>
-            <Card>
-              <CardItem style={{ height: 300, backgroundColor: "yellow" }}>
+            <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
+              <CardItem style={{ height: 300 }}>
                 <Form>
                   <Item floatingLabel style={{ width: 300 }}>
                     <Label>Prompt</Label>
@@ -52,8 +50,14 @@ class AddCardModal extends Component {
                         )} />
                   </Item>
                   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button style={{ alignSelf: "center" }} onPress={this.handleSubmitAndClear}>
-                      <Text>Submit</Text>
+                    <Button style={{ alignSelf: "center" }} onPress={() => this.props.handleEdit(this.state)}>
+                      <Text>Edit</Text>
+                    </Button>
+                    <Button onPress={() => this.props.hideModal()}>
+                      <Text>Cancel</Text>
+                    </Button>
+                    <Button onPress={() => this.props.handleDelete(this.state)}>
+                      <Text>Delete</Text>
                     </Button>
                   </View>
                 </Form>
@@ -65,4 +69,4 @@ class AddCardModal extends Component {
   }
 }
 
-export default AddCardModal;
+export default EditCardModal;
