@@ -16,7 +16,7 @@ import {
 } from "react-router-redux";
 import createMemoryHistory from 'history/createMemoryHistory';
 
-
+//Views
 import LoginScreen from "./src/components/LoginScreen/LoginScreen";
 import SignInScreen from "./src/components/SignInScreen/SignInScreen";
 import StudyScreen from "./src/components/StudyScreen/StudyScreen";
