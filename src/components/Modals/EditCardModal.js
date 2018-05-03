@@ -12,6 +12,7 @@ import {
   Textarea
 } from "native-base";
 import { Modal } from "react-native";
+import {viewStyle, buttonContainerStyle, cardItemStyle, center} from '../styles/styles'
 
 class EditCardModal extends Component {
   constructor(props) {
@@ -33,31 +34,31 @@ class EditCardModal extends Component {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
           console.log("modal closed");
         }}>
-        <View style={{ marginTop: 100, paddingRight: 10, paddingLeft: 10, flex: 1 }}>
+        <View style={viewStyle}>
           <View>
-            <Card style={{ elevation: 3, height: 300, shadowColor: "red" }}>
-              <CardItem style={{ height: 300 }}>
+            <Card>
+              <CardItem style={cardItemStyle}>
                 <Form>
                   <Item floatingLabel style={{ width: 300 }}>
                     <Label>Prompt</Label>
-                    <Input value={this.state.prompt} style={{ alignSelf: "center" }} autoCapitalize={"none"} onChangeText={prompt => this.setState(
+                    <Input value={this.state.prompt} style={center} autoCapitalize={"none"} onChangeText={prompt => this.setState(
                           { prompt }
                         )} label={"Prompt"} />
                   </Item>
                   <Item style={{ width: 300 }}>
-                    <Textarea rowSpan={5} bordered placeholder="Answer" value={this.state.answer} style={{ alignSelf: "center" }} autoCapitalize={"none"} style={{ width: 300 }} onChangeText={answer => this.setState(
+                    <Textarea rowSpan={5} bordered placeholder="Answer" value={this.state.answer} style={center} autoCapitalize={"none"} style={{ width: 300 }} onChangeText={answer => this.setState(
                           { answer }
                         )} />
                   </Item>
-                  <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button style={{ alignSelf: "center" }} onPress={() => this.props.handleEdit(this.state)}>
-                      <Text>Edit</Text>
+                  <View style={buttonContainerStyle}>
+                    <Button style={center} onPress={() => this.props.handleDelete(this.state)}>
+                      <Text>Delete</Text>
                     </Button>
-                    <Button onPress={() => this.props.hideModal()}>
+                    <Button style={center} onPress={() => this.props.hideModal()}>
                       <Text>Cancel</Text>
                     </Button>
-                    <Button onPress={() => this.props.handleDelete(this.state)}>
-                      <Text>Delete</Text>
+                    <Button style={center} onPress={() => this.props.handleEdit(this.state)}>
+                      <Text>Edit</Text>
                     </Button>
                   </View>
                 </Form>

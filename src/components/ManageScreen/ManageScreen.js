@@ -18,7 +18,8 @@ import {
 } from "native-base";
 import DeckList from './DeckList';
 import { connect } from "react-redux";
-import AddDeckModal from '../Modals/AddDeckModal'
+import AddDeckModal from '../Modals/AddDeckModal';
+import ProfileModal from '../Modals/ProfileModal';
 import FlashHeader from '../Header/FlashHeader';
 
 
@@ -44,9 +45,15 @@ class ManageScreen extends Component {
     this.hideModal();
   }
 
+  handleLogout=()=>{
+    this.props.dispatch({
+      type: 'LOGOUT_USER'
+    })
+  }
   hideModal=()=>{
     this.setState({
       modalVisible: false,
+      profileModalVisible: false,
     })
   }
 
@@ -65,6 +72,7 @@ class ManageScreen extends Component {
       profileModalVisible: true,
     })
   }
+  
   render() {
     
     return <Container>
@@ -84,26 +92,15 @@ class ManageScreen extends Component {
           handleAddDeck={this.handleAddDeck}
           hideModal={this.hideModal}
         />
+        <ProfileModal
+          modalVisible={this.state.profileModalVisible}
+          hideModal={this.hideModal}
+          handleLogout={this.handleLogout}
+        />
       </Container>;
   }
 }
 
-const styles = {
-  headerStyle: {
-    backgroundColor: "orange"
-  },
-  headerTextStyle: {
-    color: "white",
-    fontSize: 45,
-    fontWeight: "500",
-    textShadowOffset: {
-      width: 0,
-      height: 2
-    },
-    textShadowRadius: 1,
-    textShadowColor: "#000"
-  }
-};
 
 const mapStateToProps = state => ({
   state

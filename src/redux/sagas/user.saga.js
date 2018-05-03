@@ -59,9 +59,20 @@ export function* getUserInfoSaga(action){
 
   }catch(error){
     yield console.log('an error getting the user info ', error);
-    yield put({
-      type: 'SET_VIEW',
-      payload: 'Login',
-    })
+    yield put(push('/login'))
+  }
+}
+
+//LOGOUT_USER
+export function* logoutUserSaga(action){
+  try{
+    yield call(
+      axios.get,
+      'http://localhost:5000/api/user/logout',
+      config
+    )
+    yield put(push('/login'))
+  }catch(error){
+    yield console.log('an error logginh out the user')
   }
 }

@@ -12,6 +12,7 @@ import {
     CardItem
 } from 'native-base'
 import {Modal} from 'react-native';
+import {viewStyle, cardItemStyle,buttonContainerStyle, center} from '../styles/styles';
 
 
 class AddCardModal extends Component {
@@ -32,10 +33,10 @@ class AddCardModal extends Component {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
           console.log("modal closed");
         }}>
-        <View style={{ marginTop: 100, paddingRight: 10, paddingLeft: 10, flex: 1 }}>
+        <View style={viewStyle}>
           <View>
             <Card>
-              <CardItem style={{ height: 300, backgroundColor: "yellow" }}>
+              <CardItem style={cardItemStyle}>
                 <Form>
                   <Item floatingLabel style={{ width: 300 }}>
                     <Label>Prompt</Label>
@@ -48,16 +49,12 @@ class AddCardModal extends Component {
                           { answer }
                         )} />
                   </Item>
-                  <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <Button 
-                      style={{ alignSelf: "center" }} 
-                      onPress={() => this.props.handleSubmit(this.state)}>
-                      <Text>Submit</Text>
-                    </Button>
-                    <Button 
-                      style={{ alignSelf: "center" }} 
-                      onPress={() => this.props.hideModal()}>
+                  <View style={buttonContainerStyle}>
+                    <Button style={center} onPress={() => this.props.hideModal()}>
                       <Text>Cancel</Text>
+                    </Button>
+                    <Button style={center} onPress={() => this.props.handleSubmit(this.state)}>
+                      <Text>Submit</Text>
                     </Button>
                   </View>
                 </Form>

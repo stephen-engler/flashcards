@@ -3,6 +3,7 @@ import {
   loginUserSaga,
   registerUserSaga,
   getUserInfoSaga,
+  logoutUserSaga,
   
 } from "./user.saga";
 import { getDecksSaga, getCardsSaga, addDeckSaga, addCardSaga } from "./deck.saga";
@@ -19,4 +20,5 @@ export default function* rootSaga() {
   yield takeEvery('DELETE_CARD', deleteCardSaga);
   yield takeEvery('DELETE_DECK', deleteDeckSaga);
   yield takeEvery('UPDATE_DECK', updateDeckSaga);
+  yield takeEvery('LOGOUT_USER', logoutUserSaga);
 }
