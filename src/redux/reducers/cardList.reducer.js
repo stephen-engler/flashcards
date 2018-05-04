@@ -1,3 +1,5 @@
+import {DECKS} from '../actions/deckActions'
+
 const initialState = {
     cardList: [],
     deck: {},
@@ -5,9 +7,9 @@ const initialState = {
 
 const cardList = (state = initialState, action) => {
   switch (action.type) {
-    case "ALL_CARDS":
+    case DECKS.CARDS:
       return {...state, cardList: action.payload};
-    case "CHOOSEN_DECK":
+    case DECKS.CHOOSEN:
         return {...state, deck: action.payload};
     default:
       return state;

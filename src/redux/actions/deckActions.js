@@ -1,0 +1,7 @@
+export const DECKS = { 
+    SELECTED: "USER_SELECTED_DECK", 
+    GET: "GET_USER_DECKS", 
+    CHOOSEN: "CHOOSEN_DECK", 
+    ALL: "ALL_DECKS", 
+    CARDS: "ALL_CARDS" 
+};

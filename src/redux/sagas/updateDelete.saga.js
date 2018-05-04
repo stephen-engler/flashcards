@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
 import {LOADING} from '../actions/loadingActions';
+import {DECKS} from '../actions/deckActions'
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -23,7 +24,7 @@ export function* updateCardSaga(action){
         //gets the updated deck list from the user
         //why we need to send the deck
         yield put({
-            type: 'USER_SELECTED_DECK',
+            type: DECKS.SELECTED,
             payload: action.payload.deck
         })
         yield put({type: LOADING.DONE})
@@ -43,7 +44,7 @@ export function* deleteCardSaga(action){
             config,
         )
         yield put({
-            type: 'USER_SELECTED_DECK',
+            type: DECKS.SELECTED,
             payload: action.payload.deck
         })
         yield put({type: LOADING.DONE})
@@ -61,7 +62,7 @@ export function* deleteDeckSaga(action){
         config,
         )
         yield put({
-            type: 'GET_USER_DECKS',
+            type: DECKS.GET,
             payload: action.payload
         })
         yield put({type: LOADING.DONE})
@@ -81,7 +82,7 @@ export function* updateDeckSaga(action){
             config
         )
         yield put({
-            type: 'GET_USER_DECKS'
+            type: DECKS.GET
         })
         yield put({type: LOADING.DONE})
     }catch(error){

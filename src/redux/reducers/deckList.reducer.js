@@ -1,6 +1,8 @@
+import {DECKS} from '../actions/deckActions'
+
 const deckList = (state = [], action) => {
   switch(action.type){
-    case 'ALL_DECKS':
+    case DECKS.ALL:
       return action.payload;
       
     default:

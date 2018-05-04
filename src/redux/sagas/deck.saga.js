@@ -1,7 +1,8 @@
 import { call, put } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
-import {LOADING} from '../actions/loadingActions'
+import {LOADING} from '../actions/loadingActions';
+import {DECKS} from '../actions/deckActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -21,7 +22,7 @@ export function* getDecksSaga(action){
         )
         //sends them to redux store deckList Reducer
         yield put({
-            type: 'ALL_DECKS',
+            type: DECKS.ALL,
             payload: decks.data
         })
         yield put({type: LOADING.DONE})
@@ -36,7 +37,7 @@ export function* getCardsSaga(action){
         yield put({type: LOADING.START})
         //sets cardList reducer deck object to chosen deck--action.payload is the deck object
         yield put({
-            type: 'CHOOSEN_DECK',
+            type: DECKS.CHOOSEN,
             payload: action.payload
         })
         //gets all cards from the server, action.payload.id is the id of the deck
@@ -47,7 +48,7 @@ export function* getCardsSaga(action){
         )
         //Sets the cardList reducer card array to the response data
         yield put({
-            type: 'ALL_CARDS',
+            type: DECKS.CARDS,
             payload: cards.data
         })
         yield put({type: LOADING.DONE})
@@ -72,7 +73,7 @@ export function* addDeckSaga(action){
         //Server sends back the row of the newly inserted deck so we have access to it 
         //for adding cards to it.
         yield put({
-            type: 'CHOOSEN_DECK',
+            type: DECKS.CHOOSEN,
             payload: addedDeck.data[0],
         })
         yield put({type: LOADING.DONE})
@@ -97,7 +98,7 @@ export function* addCardSaga(action){
         //Changes the selected deck which updates the decklist
         //this is why we send the entire deck object
         yield put({
-            type: 'USER_SELECTED_DECK',
+            type: DECKS.SELECTED,
             payload: action.payload.deck
         })
         yield put({type: LOADING.DONE})

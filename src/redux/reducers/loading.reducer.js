@@ -1,12 +1,14 @@
+import {LOADING} from '../actions/loadingActions';
+
 const initialState = {
     loading: false,
 }
 
 const loading = (state=initialState, action)=>{
     switch(action.type){
-        case 'LOADING':
+        case LOADING.START:
             return {loading: true};
-        case 'LOADING_DONE':
+        case LOADING.DONE:
             return {loading: false};
         default:
             return state
