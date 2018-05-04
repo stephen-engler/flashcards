@@ -7,14 +7,14 @@ import {
     Icon,
     Text,
     Button,
+    View,
 } from 'native-base';
 import {headerBackgroundColor, headerTextStyle, iconStyle} from '../styles/styles'
 
 
 const FlashHeader =(props)=>{
 
-    return (
-    <Header style={headerBackgroundColor}>
+    return <Header style={headerBackgroundColor}>
         <Left>
             {props.profile ?(
                 <Button transparent onPress={()=>props.showProfileModal()}>
@@ -31,18 +31,36 @@ const FlashHeader =(props)=>{
         </Body>
         <Right>
             { props.add ? (
-                <Button transparent onPress={() => props.showModal()}>
-                    <Icon name="add-circle" style={iconStyle}/>
+                <Button transparent  large onPress={() => props.showModal()}>
+                    <Icon name="md-add-circle" style={iconStyle}/>
                 </Button> )  
             : (
-                <Button transparent onPress={()=> props.goHome()}>
-                    <Icon name='home' style={iconStyle}/>
+                <Button transparent large onPress={()=> props.goHome()}>
+                    <Icon name='home' style={{fontWeight: 900}} style={iconStyle}/>
                 </Button>       
             )
             }
         </Right>
-    </Header>
-    );
+        {/* <View style={{ flex: 1, flexDirection: "row" }}>
+          <View>
+            {props.profile ? <Button transparent onPress={() => props.showProfileModal()}>
+                <Icon name="person" style={iconStyle} />
+              </Button> : <Button transparent onPress={() => props.goBack()}>
+                <Icon name="arrow-back" style={iconStyle} />
+              </Button>}
+          </View>
+          <View>
+            <Text style={headerTextStyle}>{props.title}</Text>
+          </View>
+          <View>
+            {props.add ? <Button large onPress={() => props.showModal()}>
+                <Icon name="add-circle" style={iconStyle} />
+              </Button> : <Button transparent onPress={() => props.goHome()}>
+                <Icon name="home" style={iconStyle} />
+              </Button>}
+          </View>
+        </View> */}
+      </Header>;
 }
 
 export default FlashHeader;
