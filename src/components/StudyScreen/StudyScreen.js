@@ -29,26 +29,23 @@ class StudyScreen extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    console.log('nextProps ,', nextProps);
-    console.log('prevState ', prevState);
+
     return {cardList: nextProps.state.cardList.cardList}
   }
 
   renderEmptyDeck=()=>{
     console.log('state at render empty deck ', this.state)
     return <View style={{ flex: 1, justifyContent: "space-between", alignItems: "center", alignSelf: "center", paddingTop: 150 }}>
-        <View style={{ height: 100, width: 300, paddingTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ height: 100, width: 300, paddingTop: 20, justifyContent: "center", alignItems: "center" }}>
           <Text style={{ fontSize: 30 }}>
             You got {this.state.correct.length} right!
           </Text>
           <Text>And {this.state.incorrect.length} wrong</Text>
         </View>
-        <View style={{ alignSelf: "center", paddingTop: 15 }}>
-          <Button onPress={() => this.props.dispatch(push("/cards"))}>
+        <View style={{ width: 300, height: 200, alignSelf: "center", alignItems: 'center', justifyContent: 'space-around', flex: 1, flexDirection: 'row', paddingTop: 15 }}>
+          <Button onPress={() => this.props.dispatch(goBack())}>
             <Text>View Deck</Text>
           </Button>
-        </View>
-        <View style={{ alignSelf: "center", paddingTop: 60 }}>
           <Button onPress={() => this.props.dispatch(push("/manage"))}>
             <Text>Go home</Text>
           </Button>

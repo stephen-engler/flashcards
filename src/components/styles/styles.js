@@ -52,7 +52,11 @@ export const cardContainerStyle = {
 
 //Header styles
 export const headerBackgroundColor = { 
-    backgroundColor: "#ff5722" 
+    backgroundColor: "#ff5722", 
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.2, 
+    elevation: 2 
 };
 
 export const headerTextStyle = { 
@@ -66,7 +70,10 @@ export const headerTextStyle = {
 
 export const iconStyle = { 
     color: "#26a69a", 
-    fontSize: 40 
+    fontSize: 40, 
+    textShadowOffset: { width: 0, height: 2 }, 
+    textShadowRadius: 1, 
+    textShadowColor: "black" 
 };
 
 //flash card style
