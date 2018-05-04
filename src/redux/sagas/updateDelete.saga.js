@@ -1,6 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
+import {LOADING} from '../actions/loadingActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -12,6 +13,7 @@ const config = {
 //action.payload is an object {card: card to update, deck: the deck object}
 export function* updateCardSaga(action){
     try{
+        yield put({type: LOADING.START})
         yield call(
             axios.put,
             `http://localhost:5000/api/card/${action.payload.card.id}`,
@@ -24,6 +26,7 @@ export function* updateCardSaga(action){
             type: 'USER_SELECTED_DECK',
             payload: action.payload.deck
         })
+        yield put({type: LOADING.DONE})
     }catch(error){
         yield console.log('an error in update card ', error)
     }
@@ -33,6 +36,7 @@ export function* updateCardSaga(action){
 ///action.payload is an object {card: card to delete, deck: the deck object}
 export function* deleteCardSaga(action){
     try{
+        yield put({type: LOADING.START})
         yield call(
             axios.delete,
             `http://localhost:5000/api/card/${action.payload.card.id}`,
@@ -42,6 +46,7 @@ export function* deleteCardSaga(action){
             type: 'USER_SELECTED_DECK',
             payload: action.payload.deck
         })
+        yield put({type: LOADING.DONE})
     }catch(error){
         yield console.log('an error in delete card saga ', error);
     }
@@ -50,6 +55,7 @@ export function* deleteCardSaga(action){
 //DELETE_DECK 
 export function* deleteDeckSaga(action){
     try{
+        yield put({type: LOADING.START})
         yield call(axios.delete, 
         `http://localhost:5000/api/deck/${action.payload.id}`,
         config,
@@ -58,6 +64,7 @@ export function* deleteDeckSaga(action){
             type: 'GET_USER_DECKS',
             payload: action.payload
         })
+        yield put({type: LOADING.DONE})
     }catch(error){
         yield console.log('an error in delete card saga ', error);
     }
@@ -66,6 +73,7 @@ export function* deleteDeckSaga(action){
 //UPDATE_DECK
 export function* updateDeckSaga(action){
     try{
+        yield put({type: LOADING.START})
         yield call(
             axios.put,
             `http://localhost:5000/api/deck/${action.payload.id}`,
@@ -75,6 +83,7 @@ export function* updateDeckSaga(action){
         yield put({
             type: 'GET_USER_DECKS'
         })
+        yield put({type: LOADING.DONE})
     }catch(error){
         yield console.log('error in update deck saga ', error);
     }

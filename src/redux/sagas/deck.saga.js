@@ -1,6 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
+import {LOADING} from '../actions/loadingActions'
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -11,6 +12,7 @@ const config = {
 //GET_USER_DECKS
 export function* getDecksSaga(action){
     try{
+        yield put({type: LOADING.START})
         //gets all decks from server
         const decks = yield call(
             axios.get,
@@ -22,6 +24,7 @@ export function* getDecksSaga(action){
             type: 'ALL_DECKS',
             payload: decks.data
         })
+        yield put({type: LOADING.DONE})
 
     }catch(error){
         yield console.log('an error getting')
@@ -30,6 +33,7 @@ export function* getDecksSaga(action){
 //USER_SELECTED_DECK
 export function* getCardsSaga(action){
     try{
+        yield put({type: LOADING.START})
         //sets cardList reducer deck object to chosen deck--action.payload is the deck object
         yield put({
             type: 'CHOOSEN_DECK',
@@ -46,8 +50,10 @@ export function* getCardsSaga(action){
             type: 'ALL_CARDS',
             payload: cards.data
         })
+        yield put({type: LOADING.DONE})
         //navigates the user to the card manager screen
         yield put(push('/cards'))
+
     }catch(error){
         yield console.log('an error getting the cards ', error);
     }
@@ -55,6 +61,7 @@ export function* getCardsSaga(action){
 //ADD_DECK_NAME
 export function* addDeckSaga(action){
     try{
+        yield put({type: LOADING.START})
         //post route to server to add deck, server expects an object {deck_name: 'name of deck'}
         const addedDeck = yield call(
             axios.post,
@@ -68,6 +75,7 @@ export function* addDeckSaga(action){
             type: 'CHOOSEN_DECK',
             payload: addedDeck.data[0],
         })
+        yield put({type: LOADING.DONE})
         //navigates the user to the card manage screen
         yield put(push('/cards'))
     }catch(error){
@@ -77,6 +85,7 @@ export function* addDeckSaga(action){
 //ADD_CARD
 export function* addCardSaga(action){
     try{
+        yield put({type: LOADING.START})
         //post route to the server to add card
         //action.payload is an object with keys of {answer: 'the answer', prompt: 'the prompt', deck: {the deck object}}
         yield call(
@@ -91,6 +100,7 @@ export function* addCardSaga(action){
             type: 'USER_SELECTED_DECK',
             payload: action.payload.deck
         })
+        yield put({type: LOADING.DONE})
     }catch(error){
         yield console.log('an error adding the card ', error)
     }
