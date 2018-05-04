@@ -28,15 +28,6 @@ class StudyScreen extends Component {
 
   renderEmptyDeck=()=>{
     return (
-    
-      // <Card>
-      //   <CardItem style={{height: 200, justifyContent: 'center', alignContent: 'center'}}>
-      // <Button onPress={()=>this.props.dispatch(push('/cards'))}>
-      //   <Text>View Deck</Text>
-      // </Button>
-
-      //   </CardItem>
-      // </Card>
       <View style={{ flex: 1, justifyContent: "space-between", alignItems: "center", alignSelf: "center", paddingTop: 200 }}>
 
           <Button onPress={() => this.props.dispatch(push("/cards"))}>
@@ -65,7 +56,7 @@ class StudyScreen extends Component {
           <FlashHeader 
           goHome={this.goHome}
           goBack={this.goBack}
-          title={this.props.state.cardList.deck.deck_name}
+          title='Study'
           />
           <View style={{flex: 1}}>
             <DeckSwiper 

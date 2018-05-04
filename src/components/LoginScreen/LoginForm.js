@@ -12,6 +12,7 @@ import {
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
+import LoadingAnimation from '../LoadingAnimation/LoadingAnimation';
 
 class LoginForm extends Component {
   state = {
@@ -44,7 +45,7 @@ class LoginForm extends Component {
   //Shows the button if not loading, hides the button and shows a spinner if loading
   renderButton = () => {
     if (this.state.loading) {
-      return <Spinner color="red" />;
+      return <LoadingAnimation />;
     }
 
     return (

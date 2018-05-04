@@ -61,7 +61,7 @@ class CardManageScreen extends Component {
 
   render() {
     return <Container style={appBackGroundColor}>
-        <FlashHeader showModal={this.showModal} goBack={this.goBack} title={this.props.state.cardList.deck.deck_name} add={true} />
+        <FlashHeader showModal={this.showModal} goBack={this.goBack} title='Cards' add={true} />
         <Content>
           <CardList />
         </Content>
