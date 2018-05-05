@@ -31,6 +31,7 @@ class CardManageScreen extends Component {
   handlePress = () => {
     this.props.dispatch(push("/study"));
   };
+  
   handleSubmit = payload => {
     this.props.dispatch({
       type: "ADD_CARD",
@@ -68,9 +69,6 @@ class CardManageScreen extends Component {
         <AddCardModal modalVisible={this.state.modalVisible} handleSubmit={this.handleSubmit} hideModal={this.hideModal} />
         <Footer>
           <FooterTab>
-            {/* <Button full primary onPress={this.handlePress}>
-              <Text style={startButtonTextStyle}>Start</Text>
-            </Button> */}
             <TouchableHighlight onPress={this.handlePress} style={{ flex: 1 }}>
               <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#008ba3" }}>
                 <Text style={{ fontSize: 40, color: "#fafafa" }}>

@@ -17,30 +17,23 @@ export const viewStyle = {
 
 export const cardItemStyle = { 
     height: 300, 
-    backgroundColor: "yellow" 
+    backgroundColor: "#f5f5f5",
+    borderRadius: 1,
+    borderColor: 'black' 
 };
 
 export const center = { 
     alignSelf: "center" 
 };
 //Style for custom cardItem component 
-export const cardItemContainerStyle = { 
-    borderBottomWidth: 1, 
-    borderRadius: 40, 
-    padding: 5, 
-    backgroundColor: "#64d8cb", 
-    justifyContent: "flex-start", 
-    flexDirection: "row", 
-    borderColor: "#ddd", 
-    position: "relative" 
-};
+export const cardItemContainerStyle = { borderBottomWidth: 1, borderRadius: 3, padding: 5, backgroundColor: "#fafafa", justifyContent: "flex-start", flexDirection: "row", borderColor: "#ddd", position: "relative" };
 
 export const cardContainerStyle = { 
     borderWidth: 1, 
     borderRadius: 40, 
     borderColor: "#ddd", 
     borderBottomWidth: 0, 
-    shadowColor: "#ff8a50", 
+    shadowColor: "black", 
     shadowOffset: { width: 0, height: 2 }, 
     shadowOpacity: 0.3, 
     shadowRadius: 2, 
@@ -51,34 +44,25 @@ export const cardContainerStyle = {
 }; //rounded edges //no shadows on side //round corners for corners
 
 //Header styles
-export const headerBackgroundColor = { 
-    backgroundColor: "#ff5722", 
-    shadowColor: "#000", 
-    shadowOffset: { width: 0, height: 2 }, 
-    shadowOpacity: 0.2, 
-    elevation: 2 
-};
+export const headerBackgroundColor = { backgroundColor: "#ffc107", shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, elevation: 2 };
 
 export const headerTextStyle = { 
     color: "black", 
     fontSize: 40, 
-    fontWeight: "500", 
-    textShadowOffset: { width: 0, height: 2 }, 
-    textShadowRadius: 1, 
-    textShadowColor: "#26a69a" 
+    fontFamily: 'System'
+ 
 };
 
 export const iconStyle = { 
-    color: "#26a69a", 
-    fontSize: 40, 
-    textShadowOffset: { width: 0, height: 2 }, 
-    textShadowRadius: 1, 
-    textShadowColor: "black" 
+    color: "black", 
+    fontSize: 30, 
+
 };
 
 //flash card style
 export const flashCardTextStyle = { 
-    fontSize: 32 
+    fontSize: 32, 
+    fontFamily: 'System'
 };
 
 export const flashCardItemStyle = { 
@@ -90,8 +74,8 @@ export const flashCardItemStyle = {
 export const flashCardStyle = { 
     elevation: 3, 
     height: 300, 
-    shadowColor: "red",
-    marginTop: 40,
+    shadowColor: "black",
+    marginTop: 100,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 10,
@@ -103,7 +87,7 @@ export const listItemTextStyle = {
 }
 
 export const appBackGroundColor = { 
-    backgroundColor: "#e5ffff" 
+    backgroundColor: "#ffffff" 
 };
 
 export const startTextButtonStyle = { 
