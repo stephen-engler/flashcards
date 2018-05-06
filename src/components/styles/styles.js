@@ -44,11 +44,17 @@ export const cardContainerStyle = {
 }; //rounded edges //no shadows on side //round corners for corners
 
 //Header styles
-export const headerBackgroundColor = { backgroundColor: "#ffc107", shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, elevation: 2 };
+export const headerBackgroundColor = { 
+    backgroundColor: "#ffc107", 
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.2, 
+    elevation: 2 
+};
 
 export const headerTextStyle = { 
     color: "black", 
-    fontSize: 40, 
+    fontSize: 25, 
     fontFamily: 'System'
  
 };
@@ -83,7 +89,7 @@ export const flashCardStyle = {
 };
 
 export const listItemTextStyle = {
-    fontSize: 30
+    fontSize: 20
 }
 
 export const appBackGroundColor = { 
