@@ -9,10 +9,11 @@ import {
   Button,
   Textarea,
   Card,
-  CardItem
+  CardItem, 
+  Icon
 } from "native-base";
 import { Modal } from "react-native";
-import {viewStyle, buttonContainerStyle, cardItemStyle, center} from '../styles/styles';
+import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle, buttonTextStyle} from '../styles/styles';
 
 const ProfileModal =(props)=> {
 
@@ -26,11 +27,11 @@ const ProfileModal =(props)=> {
               <CardItem style={cardItemStyle}>
                 <Form>
                   <View style={buttonContainerStyle}>
-                    <Button style={center} onPress={() => props.hideModal()}>
-                      <Text>Cancel</Text>
+                    <Button style={center} transparent onPress={() => props.hideModal()}>
+                      <Icon name="ios-close-circle-outline" style={iconStyle} />
                     </Button>
-                    <Button style={center} onPress={() => props.handleLogout()}>
-                      <Text>Logout</Text>
+                    <Button style={center} transparent onPress={() => props.handleLogout()}>
+                      <Text style={buttonTextStyle}>Logout</Text>
                     </Button>
                   </View>
                 </Form>

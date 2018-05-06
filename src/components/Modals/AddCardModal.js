@@ -9,10 +9,11 @@ import {
     Button,
     Textarea,
     Card,
-    CardItem
+    CardItem,
+    Icon
 } from 'native-base'
 import {Modal} from 'react-native';
-import {viewStyle, cardItemStyle,buttonContainerStyle, center} from '../styles/styles';
+import {viewStyle, cardItemStyle,buttonContainerStyle, center, iconStyle} from '../styles/styles';
 
 
 class AddCardModal extends Component {
@@ -50,11 +51,11 @@ class AddCardModal extends Component {
                         )} />
                   </Item>
                   <View style={buttonContainerStyle}>
-                    <Button style={center} onPress={() => this.props.hideModal()}>
-                      <Text>Cancel</Text>
+                    <Button style={center} transparent onPress={() => this.props.hideModal()}>
+                      <Icon name="ios-close-circle-outline" style={iconStyle} />
                     </Button>
-                    <Button style={center} onPress={() => this.props.handleSubmit(this.state)}>
-                      <Text>Submit</Text>
+                    <Button style={center} transparent onPress={() => this.props.handleSubmit(this.state)}>
+                      <Icon name="add-circle" style={iconStyle} />
                     </Button>
                   </View>
                 </Form>
