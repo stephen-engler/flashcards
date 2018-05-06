@@ -78,7 +78,6 @@ export function* addDeckSaga(action){
         })
         yield put({type: DECKS.CARDS})
             
-        
         yield put({type: LOADING.DONE})
         //navigates the user to the card manage screen
         yield put(push('/cards'))

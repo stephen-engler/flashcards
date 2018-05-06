@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CardItem, Card } from '../common/';
+// import { CardItem, Card } from '../common/';
 import {
   Text,
   TouchableWithoutFeedback,
@@ -7,6 +7,7 @@ import {
   LayoutAnimation,
   Alert
 } from "react-native";
+import {CardItem, Card, Icon, Right} from 'native-base'
 import { connect } from "react-redux";
 import EditDeleteDeckModal from '../Modals/EditDeleteDeckModal';
 import {listItemTextStyle} from '../styles/styles'
@@ -56,28 +57,24 @@ class ListItem extends Component{
 
     render(props){
         console.log('in list item', props);
-        return (
-                <TouchableWithoutFeedback 
-                    onPress={this.handlePress} 
-                    onLongPress={()=>this.setState({modalVisible:true})}>
-                    <View>
-                        <Card>
-                            <CardItem>
-                                <Text style={listItemTextStyle}>
-                                    {this.props.deck.deck_name}
-                                </Text>
-                            </CardItem>
-                        </Card>
-                        <EditDeleteDeckModal 
-                            deck={this.props.deck} 
-                            modalVisible={this.state.modalVisible}
-                            hideModal={this.hideModal}
-                            handleEdit={this.handleEdit}
-                            handleDelete={this.handleDelete}
-                            />
-                    </View>
-                </TouchableWithoutFeedback>
-        );
+        return <TouchableWithoutFeedback onPress={this.handlePress} onLongPress={() => this.setState(
+                { modalVisible: true }
+              )}>
+            <View>
+              <Card>
+                <CardItem>
+                  <Text style={listItemTextStyle}>
+                    {this.props.deck.deck_name}
+                  </Text>
+                  <View style={{alignItems: 'flex-end'}}>
+
+                  <Icon name="ios-arrow-forward" style={{alignSelf: 'flex-end'}}/>
+                  </View>
+                </CardItem>
+              </Card>
+              <EditDeleteDeckModal deck={this.props.deck} modalVisible={this.state.modalVisible} hideModal={this.hideModal} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+            </View>
+          </TouchableWithoutFeedback>;
     }
 }
 
