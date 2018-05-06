@@ -6,9 +6,10 @@ import {
   View,
   LayoutAnimation
 } from "react-native";
+import {Icon} from 'native-base';
 import EditCardModal from '../Modals/EditCardModal';
 import { connect } from "react-redux";
-import {listItemTextStyle} from '../styles/styles'
+import {listItemTextStyle, listItemIconStyle, listItemStyle} from '../styles/styles'
 
 class CardListItem extends Component {
   state={
@@ -55,19 +56,14 @@ class CardListItem extends Component {
   render(props) {
     console.log("in list item", this.props);
     return <TouchableWithoutFeedback onPress={this.handlePress}>
-        <View>
-          <Card>
-            <CardItem>
-              <Text style={listItemTextStyle}>{this.props.card.prompt}</Text>
-            </CardItem>
-          </Card>
-          <EditCardModal 
-            modalVisible={this.state.modalVisible} 
-            card={this.props.card}
-            handleEdit={this.handleEdit}
-            handleDelete={this.handleDelete}
-            hideModal={this.hideModal}
-            />
+        <View style={listItemStyle}>
+          <View style={{ flex: 1, justifyContent: "flex-start" }}>
+            <Text style={listItemTextStyle}>{this.props.card.prompt}</Text>
+          </View>
+          <View style={{ flex: 1, justifyContent: "flex-end" }}>
+            <Icon name="ios-information" style={listItemIconStyle} />
+          </View>
+          <EditCardModal modalVisible={this.state.modalVisible} card={this.props.card} handleEdit={this.handleEdit} handleDelete={this.handleDelete} hideModal={this.hideModal} />
         </View>
       </TouchableWithoutFeedback>;
   }

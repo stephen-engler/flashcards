@@ -62,7 +62,7 @@ class CardManageScreen extends Component {
 
   render() {
     return <Container style={appBackGroundColor}>
-        <FlashHeader showModal={this.showModal} goBack={this.goBack} title='Cards' add={true} />
+        <FlashHeader showModal={this.showModal} goBack={this.goBack} title="Cards" add={true} />
         <Content>
           <CardList />
         </Content>
@@ -70,8 +70,8 @@ class CardManageScreen extends Component {
         <Footer>
           <FooterTab>
             <TouchableHighlight onPress={this.handlePress} style={{ flex: 1 }}>
-              <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#008ba3" }}>
-                <Text style={{ fontSize: 40, color: "#fafafa" }}>
+              <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fafafa" }}>
+                <Text style={{ fontSize: 40, color: "#ffc107" }}>
                   Start
                 </Text>
               </View>

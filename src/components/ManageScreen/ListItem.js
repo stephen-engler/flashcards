@@ -10,7 +10,7 @@ import {
 import {CardItem, Card, Icon, Right} from 'native-base'
 import { connect } from "react-redux";
 import EditDeleteDeckModal from '../Modals/EditDeleteDeckModal';
-import {listItemTextStyle} from '../styles/styles'
+import {listItemTextStyle, listItemStyle, listItemIconStyle} from '../styles/styles'
 
 class ListItem extends Component{
     state = {
@@ -61,17 +61,16 @@ class ListItem extends Component{
                 { modalVisible: true }
               )}>
             <View>
-              <Card>
-                <CardItem>
+              <View style={listItemStyle}>
+                <View style={{ flex: 1, justifyContent: "flex-start" }}>
                   <Text style={listItemTextStyle}>
                     {this.props.deck.deck_name}
                   </Text>
-                  <View style={{alignItems: 'flex-end'}}>
-
-                  <Icon name="ios-arrow-forward" style={{alignSelf: 'flex-end'}}/>
-                  </View>
-                </CardItem>
-              </Card>
+                </View>
+                <View style={{ flex: 1, justifyContent: "flex-end" }}>
+                  <Icon name="ios-arrow-forward" style={listItemIconStyle} />
+                </View>
+              </View>
               <EditDeleteDeckModal deck={this.props.deck} modalVisible={this.state.modalVisible} hideModal={this.hideModal} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
             </View>
           </TouchableWithoutFeedback>;

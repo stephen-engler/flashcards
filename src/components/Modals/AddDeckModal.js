@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Modal } from "react-native";
-import {View, Card, CardItem, Form, Item, Label, Input, Button, Text} from 'native-base';
-import {buttonContainerStyle, viewStyle, cardItemStyle, center } from '../styles/styles';
+import {View, Card, CardItem, Form, Item, Label, Input, Button, Text, Icon} from 'native-base';
+import {buttonContainerStyle, viewStyle, cardItemStyle, center, buttonTextStyle, iconStyle } from '../styles/styles';
 
 class AddDeckModal extends Component{
     state = {
@@ -35,11 +35,11 @@ class AddDeckModal extends Component{
                             )} label={"Deck Name"} />
                       </Item>
                       <View style={buttonContainerStyle}>
-                        <Button style={center} onPress={() => this.props.hideModal()}>
-                          <Text>Cancel</Text>
+                        <Button style={center} transparent onPress={() => this.props.hideModal()}>
+                          <Icon name="ios-close-circle-outline" style={iconStyle}/>
                         </Button>
-                        <Button style={center} onPress={this.handlePress}>
-                          <Text>Submit</Text>
+                        <Button style={center} transparent onPress={this.handlePress}>
+                          <Icon name="add-circle" style={iconStyle} />
                         </Button>
                       </View>
                     </Form>

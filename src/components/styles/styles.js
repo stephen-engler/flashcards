@@ -26,8 +26,11 @@ export const center = { alignSelf: "center" };
 
 export const buttonStyle = {
     alignSelf: 'center',
-
 }
+export const buttonTextStyle = { 
+    color: "#ffc107",
+    fontSize: 18
+};
 //Style for custom cardItem component 
 export const cardItemContainerStyle = { borderBottomWidth: 1, borderRadius: 3, padding: 5, backgroundColor: "#fafafa", justifyContent: "flex-start", flexDirection: "row", borderColor: "#ddd", position: "relative" };
 
@@ -84,7 +87,7 @@ export const flashCardStyle = {
 
 export const listItemTextStyle = {
     fontSize: 20,
-    fontWeight: '200'
+    fontWeight: '200',
 }
 
 export const appBackGroundColor = { 
@@ -95,3 +98,23 @@ export const startTextButtonStyle = {
     fontSize: 20, 
     color: "white", 
 };
+
+export const listItemStyle = {
+  flex: 1,
+  flexDirection: "row",
+  borderTopWidth: 0,
+  borderRightWidth: 0,
+  borderLeftWidth: 0,
+  borderBottomColor: "#ddd",
+  borderBottomWidth: 1,
+  borderStyle: "solid",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  paddingLeft: 20,
+  paddingRight: 20,
+  height: 50
+};
+
+export const listItemIconStyle ={
+ alignSelf: "flex-end", color: "#ffc107", fontSize: 35 
+}
