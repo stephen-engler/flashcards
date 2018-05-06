@@ -22,9 +22,12 @@ export const cardItemStyle = {
     borderColor: 'black' 
 };
 
-export const center = { 
-    alignSelf: "center" 
-};
+export const center = { alignSelf: "center" };
+
+export const buttonStyle = {
+    alignSelf: 'center',
+
+}
 //Style for custom cardItem component 
 export const cardItemContainerStyle = { borderBottomWidth: 1, borderRadius: 3, padding: 5, backgroundColor: "#fafafa", justifyContent: "flex-start", flexDirection: "row", borderColor: "#ddd", position: "relative" };
 
@@ -44,26 +47,17 @@ export const cardContainerStyle = {
 }; //rounded edges //no shadows on side //round corners for corners
 
 //Header styles
-export const headerBackgroundColor = { 
-    backgroundColor: "#ffc107", 
-    shadowColor: "#000", 
-    shadowOffset: { width: 0, height: 2 }, 
-    shadowOpacity: 0.2, 
-    elevation: 2 
-};
+export const headerBackgroundColor = { backgroundColor: "#fafafa", shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, elevation: 2 };
 
 export const headerTextStyle = { 
     color: "black", 
-    fontSize: 25, 
+    fontSize: 25,
+    fontWeight: '400', 
     fontFamily: 'System'
  
 };
 
-export const iconStyle = { 
-    color: "black", 
-    fontSize: 30, 
-
-};
+export const iconStyle = { color: "#ffc107", fontSize: 35 };
 
 //flash card style
 export const flashCardTextStyle = { 
@@ -89,7 +83,8 @@ export const flashCardStyle = {
 };
 
 export const listItemTextStyle = {
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: '200'
 }
 
 export const appBackGroundColor = { 
