@@ -9,10 +9,11 @@ import {
   Input,
   Label,
   Button,
-  Textarea
+  Textarea,
+  Icon
 } from "native-base";
 import { Modal } from "react-native";
-import {viewStyle, buttonContainerStyle, cardItemStyle, center} from '../styles/styles'
+import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle} from '../styles/styles'
 
 class EditCardModal extends Component {
   constructor(props) {
@@ -51,14 +52,14 @@ class EditCardModal extends Component {
                         )} />
                   </Item>
                   <View style={buttonContainerStyle}>
-                    <Button style={center} onPress={() => this.props.handleDelete(this.state)}>
-                      <Text>Delete</Text>
+                    <Button style={center} transparent onPress={() => this.props.handleDelete(this.state)}>
+                      <Icon name="ios-trash-outline" style={iconStyle} />
                     </Button>
-                    <Button style={center} onPress={() => this.props.hideModal()}>
-                      <Text>Cancel</Text>
+                    <Button style={center} transparent onPress={() => this.props.hideModal()}>
+                      <Icon name="ios-close-circle-outline" style={iconStyle} />
                     </Button>
-                    <Button style={center} onPress={() => this.props.handleEdit(this.state)}>
-                      <Text>Edit</Text>
+                    <Button style={center} transparent onPress={() => this.props.handleEdit(this.state)}>
+                      <Icon name="ios-create-outline" style={iconStyle} />
                     </Button>
                   </View>
                 </Form>
