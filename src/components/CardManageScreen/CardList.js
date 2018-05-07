@@ -4,8 +4,24 @@ import {Icon} from 'native-base';
 import { connect } from "react-redux";
 import CardListItem from './CardListItem';
 
-class CardList extends Component {
+const CustomLayoutSpring = {
+  duration: 200,
+  create: {
+    type: LayoutAnimation.Types.spring,
+    property: LayoutAnimation.Properties.opacity,
+    springDamping: 0.7
+  },
+  update: {
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.7
+  }
+};
 
+class CardList extends Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    LayoutAnimation.configureNext(CustomLayoutSpring);
+    return null;
+  }
   render() {
     console.log("in card list ", this.props.state.cardList);
     return (

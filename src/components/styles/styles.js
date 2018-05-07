@@ -119,3 +119,14 @@ export const listItemStyle = {
 export const listItemIconStyle ={
  alignSelf: "flex-end", color: "#ffc107", fontSize: 35 
 }
+
+export const studyScreenView = { 
+    flexDirection: "row", 
+    flex: 1, 
+    position: "absolute", 
+    bottom: 50, 
+    left: 50, 
+    right: 50, 
+    justifyContent: "space-between", 
+    padding: 15 
+};

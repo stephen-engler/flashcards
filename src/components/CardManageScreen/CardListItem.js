@@ -17,14 +17,13 @@ class CardListItem extends Component {
   }
 
   handlePress = () => {
-    console.log("pressed");
     this.setState({
       modalVisible: true,
     })
   };
-
+  //hides modal and dispatches the editted content
   handleEdit = (editCard) =>{
-    //need to also send teh deck to get the updated list
+    //need to also send tHE deck to get the updated list
     const payload = {
       card: editCard,
       deck: this.props.state.cardList.deck
@@ -35,6 +34,7 @@ class CardListItem extends Component {
       payload: payload
     })
   }
+  //hides modal and dispatches the delete
   handleDelete = (deleteCard)=>{
     const payload = {
       card: deleteCard,
@@ -46,7 +46,7 @@ class CardListItem extends Component {
       payload: payload
     })
   }
-
+  //hides modal helper function
   hideModal = () =>{
     this.setState({
       modalVisible: false,
@@ -54,7 +54,6 @@ class CardListItem extends Component {
   }
 
   render(props) {
-    console.log("in list item", this.props);
     return <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={listItemStyle}>
           <View style={{ flex: 1, justifyContent: "flex-start" }}>

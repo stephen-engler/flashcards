@@ -13,7 +13,7 @@ const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
 };
-//GET_USER_DECKS
+//GET_USER_DECKS  DECKS.GET
 export function* getDecksSaga(action){
     try{
         yield put({type: LOADING.START})
@@ -38,6 +38,8 @@ export function* getDecksSaga(action){
 export function* getCardsSaga(action){
     try{
         yield put({type: LOADING.START})
+        //navigates the user to the card manager screen
+        yield put(push('/cards'))
         //sets cardList reducer deck object to chosen deck--action.payload is the deck object
         yield put({
             type: DECKS.CHOOSEN,
@@ -55,8 +57,8 @@ export function* getCardsSaga(action){
             payload: cards.data
         })
         yield put({type: LOADING.DONE})
-        //navigates the user to the card manager screen
-        yield put(push('/cards'))
+
+        
 
     }catch(error){
         yield console.log('an error getting the cards ', error);

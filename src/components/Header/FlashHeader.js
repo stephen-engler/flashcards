@@ -32,25 +32,6 @@ const FlashHeader =(props)=>{
               <Icon name="home" style={{ fontWeight: 900 }} style={iconStyle} />
             </Button>}
         </Right>
-        {/* <View style={{ flex: 1, flexDirection: "row" }}>
-          <View>
-            {props.profile ? <Button transparent onPress={() => props.showProfileModal()}>
-                <Icon name="person" style={iconStyle} />
-              </Button> : <Button transparent onPress={() => props.goBack()}>
-                <Icon name="arrow-back" style={iconStyle} />
-              </Button>}
-          </View>
-          <View>
-            <Text style={headerTextStyle}>{props.title}</Text>
-          </View>
-          <View>
-            {props.add ? <Button large onPress={() => props.showModal()}>
-                <Icon name="add-circle" style={iconStyle} />
-              </Button> : <Button transparent onPress={() => props.goHome()}>
-                <Icon name="home" style={iconStyle} />
-              </Button>}
-          </View>
-        </View> */}
       </Header>;
 }
 
