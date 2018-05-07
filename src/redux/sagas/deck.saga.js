@@ -6,6 +6,9 @@ import {DECKS} from '../actions/deckActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
+
+const host = "http://10.100.100.109:5000/";
+
 const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
@@ -17,7 +20,7 @@ export function* getDecksSaga(action){
         //gets all decks from server
         const decks = yield call(
             axios.get,
-            'http://localhost:5000/api/deck',
+            `${host}api/deck`,
             config
         )
         //sends them to redux store deckList Reducer
@@ -43,7 +46,7 @@ export function* getCardsSaga(action){
         //gets all cards from the server, action.payload.id is the id of the deck
         const cards = yield call(
             axios.get,
-            `http://localhost:5000/api/card/${action.payload.id}`,
+            `${host}api/card/${action.payload.id}`,
             config
         )
         //Sets the cardList reducer card array to the response data
@@ -66,7 +69,7 @@ export function* addDeckSaga(action){
         //post route to server to add deck, server expects an object {deck_name: 'name of deck'}
         const addedDeck = yield call(
             axios.post,
-            'http://localhost:5000/api/deck/',
+            `${host}api/deck/`,
             {deck_name: action.payload},
             config
         )
@@ -93,7 +96,7 @@ export function* addCardSaga(action){
         //action.payload is an object with keys of {answer: 'the answer', prompt: 'the prompt', deck: {the deck object}}
         yield call(
             axios.post,
-            "http://localhost:5000/api/card",
+            `${host}api/card`,
             action.payload,
             config
         )
