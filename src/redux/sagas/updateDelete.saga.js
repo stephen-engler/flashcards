@@ -6,6 +6,8 @@ import {DECKS} from '../actions/deckActions'
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
+const host = "https://lit-hamlet-45219.herokuapp.com/";
+
 const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
@@ -17,7 +19,7 @@ export function* updateCardSaga(action){
         yield put({type: LOADING.START})
         yield call(
             axios.put,
-            `http://localhost:5000/api/card/${action.payload.card.id}`,
+            `${host}api/card/${action.payload.card.id}`,
             action.payload.card,
             config,
         )
@@ -40,7 +42,7 @@ export function* deleteCardSaga(action){
         yield put({type: LOADING.START})
         yield call(
             axios.delete,
-            `http://localhost:5000/api/card/${action.payload.card.id}`,
+            `${host}api/card/${action.payload.card.id}`,
             config,
         )
         yield put({
@@ -58,7 +60,7 @@ export function* deleteDeckSaga(action){
     try{
         yield put({type: LOADING.START})
         yield call(axios.delete, 
-        `http://localhost:5000/api/deck/${action.payload.id}`,
+        `${host}api/deck/${action.payload.id}`,
         config,
         )
         yield put({
@@ -77,7 +79,7 @@ export function* updateDeckSaga(action){
         yield put({type: LOADING.START})
         yield call(
             axios.put,
-            `http://localhost:5000/api/deck/${action.payload.id}`,
+            `${host}api/deck/${action.payload.id}`,
             action.payload,
             config
         )

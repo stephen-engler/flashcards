@@ -5,6 +5,8 @@ import {LOADING } from '../actions/loadingActions'
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
+const host = "https://lit-hamlet-45219.herokuapp.com/";
+
 const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
@@ -18,7 +20,7 @@ export function* loginUserSaga(action) {
     })
     yield call(
       axios.post,
-      "http://localhost:5000/api/user/login",
+      `${host}api/user/login`,
       action.payload,
       config
     );
@@ -39,7 +41,7 @@ export function* registerUserSaga(action){
     yield put({type: LOADING.START})
     yield call(
       axios.post,
-      "http://localhost:5000/api/user/register",
+      `${host}api/user/register`,
       action.payload,
       config
     );
@@ -56,7 +58,7 @@ export function* getUserInfoSaga(action){
     yield put({type: LOADING.START})
     const userInfo = yield call(
       axios.get,
-      'http://localhost:5000/api/user/',
+      `${host}api/user/`,
       config
     );
     yield console.log('in get user info saga ', userInfo);
@@ -77,7 +79,7 @@ export function* logoutUserSaga(action){
   try{
     yield call(
       axios.get,
-      'http://localhost:5000/api/user/logout',
+      `${host}api/user/logout`,
       config
     )
     yield put(push('/login'))
