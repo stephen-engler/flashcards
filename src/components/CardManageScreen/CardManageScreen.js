@@ -21,12 +21,19 @@ import { push, goBack } from "react-router-redux";
 import CardList from './CardList';
 import AddCardModal from '../Modals/AddCardModal';
 import FlashHeader from '../Header/FlashHeader';
-import {appBackGroundColor, startButtonTextStyle} from '../styles/styles'
+import {appBackGroundColor, startButtonTextStyle} from '../styles/styles';
+import * as Animatable from "react-native-animatable";
 
 class CardManageScreen extends Component {
   state = {
     modalVisible: false
   };
+
+  componentWillMount(){
+
+  }
+
+
 
   handlePress = () => {
     this.props.dispatch(push("/study"));

@@ -33,10 +33,13 @@ class ManageScreen extends Component {
   };
 
   componentDidMount() {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     this.props.dispatch({
       type: "GET_USER_DECKS"
     });
-  }
+  };
+
+  
 
   handleAddDeck=(deck_name)=>{
     this.props.dispatch({
