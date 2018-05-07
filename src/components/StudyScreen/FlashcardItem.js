@@ -34,16 +34,6 @@ class FlashcardItem extends Component{
         if (this.state.showAnswer) {
         return <CardItem style={flashCardItemStyle}>
             <Text style={flashCardTextStyle}>{item.answer}</Text>
-            {/* <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 50, left: 0, right: 0, justifyContent: "space-between", padding: 15 }}>
-              <Button iconLeft onPress={() => this.props.swipeLeft}>
-                <Icon name="arrow-back" />
-                <Text>Swipe Left</Text>
-              </Button>
-              <Button iconRight onPress={() => deckSwiper.swipeRight()}>
-                <Text>Swipe Right</Text>
-                <Icon name="arrow-forward" />
-              </Button>
-            </View> */}
           </CardItem>;
         }
         return (
@@ -53,7 +43,7 @@ class FlashcardItem extends Component{
         );
     };
     render(){
-      const  {item, deckSwiper} = this.props;
+      const  {item} = this.props;
       
         return(
             <TouchableWithoutFeedback 
