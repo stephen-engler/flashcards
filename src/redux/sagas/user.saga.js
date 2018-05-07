@@ -1,7 +1,8 @@
 import { call, put } from "redux-saga/effects";
 import axios from "axios";
 import {push} from 'react-router-redux';
-import {LOADING } from '../actions/loadingActions'
+import {LOADING } from '../actions/loadingActions';
+import {DECKS} from '../actions/deckActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -26,6 +27,9 @@ export function* loginUserSaga(action) {
     );
     yield put({
       type: 'GET_USER_INFO'
+    })
+    yield put({
+      type: DECKS.GET
     })
     yield put({type: LOADING.DONE})
     yield put(push('/manage'));

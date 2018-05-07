@@ -2,27 +2,18 @@ import React, { Component } from "react";
 import {push, goBack} from 'react-router-redux';
 import { Platform, StyleSheet, LayoutAnimation, TouchableHighlight } from "react-native";
 import {
-  Icon,
-  Button,
   Container,
-  Form,
-  Item,
   Content,
-  View,
-  Header,
-  Title,
-  Left,
-  Right,
-  Text,
-  Body,
 } from "native-base";
-import DeckList from './DeckList';
 import { connect } from "react-redux";
+//Custom Components
 import AddDeckModal from '../Modals/AddDeckModal';
 import ProfileModal from '../Modals/ProfileModal';
 import FlashHeader from '../Header/FlashHeader';
+import AnimateView from '../common/AnimateView';
+import DeckList from "./DeckList";
+//Styles
 import {appBackGroundColor} from '../styles/styles'
-
 
 
 class ManageScreen extends Component {
@@ -33,13 +24,10 @@ class ManageScreen extends Component {
   };
 
   componentDidMount() {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     this.props.dispatch({
       type: "GET_USER_DECKS"
     });
   };
-
-  
 
   handleAddDeck=(deck_name)=>{
     this.props.dispatch({
@@ -54,6 +42,7 @@ class ManageScreen extends Component {
       type: 'LOGOUT_USER'
     })
   }
+  
   hideModal=()=>{
     this.setState({
       modalVisible: false,
@@ -78,33 +67,33 @@ class ManageScreen extends Component {
   }
   
   render() {
-    
-    return <Container style={appBackGroundColor}>
-        <FlashHeader 
-        goBack={this.goBack}
-        showModal={this.showModal}
-        title='Decks'
-        add={true}
-        profile={true}
-        showProfileModal={this.showProfileModal}
-        />
-        <Content>
-          <DeckList />
-        </Content>
-        <AddDeckModal 
-          modalVisible={this.state.modalVisible} 
-          handleAddDeck={this.handleAddDeck}
-          hideModal={this.hideModal}
-        />
-        <ProfileModal
-          modalVisible={this.state.profileModalVisible}
-          hideModal={this.hideModal}
-          handleLogout={this.handleLogout}
-        />
-      </Container>;
+    return <AnimateView>
+        <Container style={appBackGroundColor}>
+            <FlashHeader 
+            goBack={this.goBack}
+            showModal={this.showModal}
+            title='Decks'
+            add={true}
+            profile={true}
+            showProfileModal={this.showProfileModal}
+            />
+            <Content>
+              <DeckList />
+            </Content>
+            <AddDeckModal 
+              modalVisible={this.state.modalVisible} 
+              handleAddDeck={this.handleAddDeck}
+              hideModal={this.hideModal}
+            />
+            <ProfileModal
+              modalVisible={this.state.profileModalVisible}
+              hideModal={this.hideModal}
+              handleLogout={this.handleLogout}
+            />
+          </Container>
+      </AnimateView>;
   }
 }
-
 
 const mapStateToProps = state => ({
   state

@@ -1,39 +1,27 @@
 import React, { Component } from "react";
 import {
-  LayoutAnimation,
-} from "react-native";
-import {
   Container,
   Content,
   Header,
-  Title,
-  Left,
-  Label,
-  Right,
-  Text,
-  Body,
   Footer,
   FooterTab,
 } from "native-base";
-import {Button, View, TouchableHighlight} from 'react-native'
 import { connect } from "react-redux";
 import { push, goBack } from "react-router-redux";
-import CardList from './CardList';
-import AddCardModal from '../Modals/AddCardModal';
-import FlashHeader from '../Header/FlashHeader';
+
 import {appBackGroundColor, startButtonTextStyle} from '../styles/styles';
-import * as Animatable from "react-native-animatable";
+
+import AnimateView from '../common/AnimateView';
+import CardList from "./CardList";
+import AddCardModal from "../Modals/AddCardModal";
+import FlashHeader from "../Header/FlashHeader";
+import StartButton from './StartButton';
+
 
 class CardManageScreen extends Component {
   state = {
     modalVisible: false
   };
-
-  componentWillMount(){
-
-  }
-
-
 
   handlePress = () => {
     this.props.dispatch(push("/study"));
@@ -68,24 +56,25 @@ class CardManageScreen extends Component {
   };
 
   render() {
-    return <Container style={appBackGroundColor}>
-        <FlashHeader showModal={this.showModal} goBack={this.goBack} title="Cards" add={true} />
-        <Content>
-          <CardList />
-        </Content>
-        <AddCardModal modalVisible={this.state.modalVisible} handleSubmit={this.handleSubmit} hideModal={this.hideModal} />
-        <Footer>
-          <FooterTab>
-            <TouchableHighlight onPress={this.handlePress} style={{ flex: 1 }}>
-              <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fafafa" }}>
-                <Text style={{ fontSize: 40, color: "#ffc107" }}>
-                  Start
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </FooterTab>
-        </Footer>
-      </Container>;
+    return <AnimateView>
+        <Container style={appBackGroundColor}>
+          
+          <FlashHeader showModal={this.showModal} goBack={this.goBack} title="Cards" add={true} />
+
+          <Content>
+            <CardList />
+          </Content>
+
+          <AddCardModal modalVisible={this.state.modalVisible} handleSubmit={this.handleSubmit} hideModal={this.hideModal} />
+          
+          <Footer>
+            <FooterTab>
+              <StartButton handlePress={this.handlePress}/>
+            </FooterTab>
+          </Footer>
+        
+        </Container>
+      </AnimateView>;
   }
 }
 
