@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import FlashcardItem from './FlashcardItem';
 import {push, goBack} from 'react-router-redux';
 import FlashHeader from '../Header/FlashHeader';
-import {appBackGroundColor} from '../styles/styles'
+import {appBackGroundColor, iconStyle, buttonTextStyle} from '../styles/styles'
 
 
 class StudyScreen extends Component {
@@ -43,11 +43,11 @@ class StudyScreen extends Component {
           <Text>And {this.state.incorrect.length} wrong</Text>
         </View>
         <View style={{ width: 300, height: 200, alignSelf: "center", alignItems: 'center', justifyContent: 'space-around', flex: 1, flexDirection: 'row', paddingTop: 15 }}>
-          <Button onPress={() => this.props.dispatch(goBack())}>
-            <Text>View Deck</Text>
+          <Button transparent onPress={() => this.props.dispatch(goBack())}>
+            <Text style={buttonTextStyle}>View Deck</Text>
           </Button>
-          <Button onPress={() => this.props.dispatch(push("/manage"))}>
-            <Text>Go home</Text>
+          <Button transparent onPress={() => this.props.dispatch(push("/manage"))}>
+            <Text style = {buttonTextStyle}>Go home</Text>
           </Button>
         </View>
       </View>;
@@ -73,6 +73,16 @@ class StudyScreen extends Component {
     })
   }
 
+  swipeRightButton=(item)=>{
+    this.gotCorrect(item);
+    this._deckSwiper._root.swipeRight();
+  }
+
+  swipeLeftButton=(item)=>{
+    this.gotIncorrect(item);
+    this._deckSwiper._root.swipeLeft();
+  }
+
   render() {
 
     return <Container style={appBackGroundColor}>
@@ -81,16 +91,14 @@ class StudyScreen extends Component {
           <DeckSwiper ref={c => (this._deckSwiper = c)} dataSource={this.state.cardList} renderEmpty={this.renderEmptyDeck} looping={false} onSwipeRight={item => this.gotCorrect(item)} onSwipeLeft={item => this.gotIncorrect(item)} renderItem={item => <FlashcardItem item={item} />} />
         </View>
 
-        {/* <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 50, left: 0, right: 0, justifyContent: "space-between", padding: 15 }}>
-          <Button iconLeft onPress={() => this._deckSwiper._root.swipeLeft()}>
-            <Icon name="arrow-back" />
-            <Text>Swipe Left</Text>
+        <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 50, left: 50, right: 50, justifyContent: "space-between", padding: 15 }}>
+          <Button large transparent onPress={() => this.swipeLeftButton(this._deckSwiper._root.state.selectedItem)}>
+            <Icon name="ios-close-outline" style={{ color: "#ffc107", fontSize: 60 }} />
           </Button>
-          <Button iconRight onPress={() => this._deckSwiper._root.swipeRight()}>
-            <Text>Swipe Right</Text>
-            <Icon name="arrow-forward" />
+          <Button large transparent onPress={() => this.swipeRightButton(this._deckSwiper._root.state.selectedItem)}>
+            <Icon name="ios-checkmark" style={{ color: "#ffc107", fontSize: 60 }} />
           </Button>
-        </View> */}
+        </View>
       </Container>;
   }
 }

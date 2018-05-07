@@ -39,21 +39,11 @@ class ListItem extends Component{
     }
     handleDelete = (deck) =>{
         console.log('in handle delete ', deck);
-        Alert.alert(
-            'Are you sure?',
-            `A deleted deck can't be recovered`,
-            [
-                {text: 'Cancel', onPress:()=>console.log('canceld'), style: 'cancel'},
-                {text: 'Ok', onPress:()=>this.deleteConfirmed(deck)}
-            ]
-        )
-
-    }
-
-    deleteConfirmed=(deck)=>{
-        this.props.dispatch({type:'DELETE_DECK', payload: deck});
+        this.props.dispatch({ type: "DELETE_DECK", payload: deck });
         this.hideModal();
+
     }
+
 
     render(props){
         console.log('in list item', props);

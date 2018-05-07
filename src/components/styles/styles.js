@@ -77,13 +77,14 @@ export const flashCardItemStyle = {
 export const flashCardStyle = { 
     elevation: 3, 
     height: 300, 
-    shadowColor: "black",
-    marginTop: 100,
-    marginLeft: 20,
-    marginRight: 20,
-    borderRadius: 10,
-    borderWidth: 4 
-};
+    shadowColor: "black", 
+    marginTop: 100, 
+    marginLeft: 20, 
+    marginRight: 20, 
+    borderRadius: 4, 
+    borderWidth: 10, 
+    borderTopWidth: 7,
+    borderTopColor: "#ffc107" };
 
 export const listItemTextStyle = {
     fontSize: 20,

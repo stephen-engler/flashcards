@@ -7,7 +7,9 @@ import {
   CardItem,
   Text,
   Left,
-  Body
+  Body,
+  Button,
+  Icon,
 } from "native-base";
 import { TouchableWithoutFeedback } from "react-native";
 import React, { Component } from "react";
@@ -30,11 +32,19 @@ class FlashcardItem extends Component{
 
     renderCard = item => {
         if (this.state.showAnswer) {
-        return (
-            <CardItem style={flashCardItemStyle}>
-                <Text style={flashCardTextStyle}>{item.answer}</Text>
-            </CardItem>
-        );
+        return <CardItem style={flashCardItemStyle}>
+            <Text style={flashCardTextStyle}>{item.answer}</Text>
+            {/* <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 50, left: 0, right: 0, justifyContent: "space-between", padding: 15 }}>
+              <Button iconLeft onPress={() => this.props.swipeLeft}>
+                <Icon name="arrow-back" />
+                <Text>Swipe Left</Text>
+              </Button>
+              <Button iconRight onPress={() => deckSwiper.swipeRight()}>
+                <Text>Swipe Right</Text>
+                <Icon name="arrow-forward" />
+              </Button>
+            </View> */}
+          </CardItem>;
         }
         return (
             <CardItem style={flashCardItemStyle}>
@@ -43,7 +53,8 @@ class FlashcardItem extends Component{
         );
     };
     render(){
-      const  {item} = this.props;
+      const  {item, deckSwiper} = this.props;
+      
         return(
             <TouchableWithoutFeedback 
               onPress={this.handlePress}>
