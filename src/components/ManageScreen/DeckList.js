@@ -1,8 +1,10 @@
+//react
 import React, { Component } from "react";
 import { View, FlatList, LayoutAnimation } from "react-native";
 import { connect } from "react-redux";
+//custom components
 import ListItem from './ListItem';
-
+//Animation
 const CustomLayoutSpring = {
   duration: 200,
   create: {
@@ -17,14 +19,15 @@ const CustomLayoutSpring = {
 };
 
 class DeckList extends Component {
-  
+  //called when componenet is initialized and state changes
+  //sets up animation for when view is navigated tof
   static getDerivedStateFromProps(nextProps, prevState) {
     LayoutAnimation.configureNext(CustomLayoutSpring);
     return null;
   }
 
   render() {
-    console.log("in decklist ", this.props.state.deckList);
+    //Flat list iterates over deck with decklist from redux store
     return (
       <View style={{ flex: 1 }}>
         <FlatList

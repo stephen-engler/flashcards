@@ -65,7 +65,9 @@ class LoginForm extends Component {
     return (
         <Content>
             <View style={{ flex: 1 }}>
+                {/* Form */}
                 <Form>
+                  {/* Username */}
                     <Item floatingLabel>
                     <Label>Username</Label>
                     <Input
@@ -75,7 +77,7 @@ class LoginForm extends Component {
                         label={"Email"}
                     />
                     </Item>
-
+                    {/* Password */}
                     <Item floatingLabel last>
                     <Label>Password</Label>
                     <Input
@@ -86,13 +88,13 @@ class LoginForm extends Component {
                     />
                     </Item>
                 </Form>
-
+                {/* Error */}
                 <Text style={styles.errorTextStyle}>
                     {this.state.error}
                 </Text>
 
                 {this.renderButton()}
-
+                {/* Register Button */}
                 <View style={styles.registerStyle}>
                     <Text>Don't have an accout?</Text>
                     <Button

@@ -4,6 +4,7 @@ import {TouchableHighlight, View} from 'react-native';
 import {Text} from 'native-base';
 
 //Stateless component expects function to call when pressed
+//props.handlePress
 const StartButton = (props)=>{
     return <TouchableHighlight 
       onPress={props.handlePress} 
