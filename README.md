@@ -19,9 +19,9 @@ The user can create a deck of flash cards and add cards to the deck.  The user c
 * PostrgreSQL
 
 ## To Do
- [ ] Add loading spinners anytime a request is made.
- [ ] Animation when the card is tapped.
- [ ] Submit to the app store.
+- [ ] Add loading spinners anytime a request is made.
+- [ ] Animation when the card is tapped.
+- [ ] Submit to the app store.
 
 ## Considering To Do
 * Move all storage to the local device using Redux-Persist.
