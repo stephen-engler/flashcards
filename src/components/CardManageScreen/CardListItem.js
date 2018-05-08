@@ -1,5 +1,5 @@
+//React
 import React, { Component } from "react";
-import { CardItem, Card } from "../common/";
 import {
   Text,
   TouchableWithoutFeedback,
@@ -7,8 +7,11 @@ import {
   LayoutAnimation
 } from "react-native";
 import {Icon} from 'native-base';
-import EditCardModal from '../Modals/EditCardModal';
+//Redux
 import { connect } from "react-redux";
+//Custom components
+import EditCardModal from "../Modals/EditCardModal";
+//Styles
 import {listItemTextStyle, listItemIconStyle, listItemStyle} from '../styles/styles'
 
 class CardListItem extends Component {
@@ -22,8 +25,9 @@ class CardListItem extends Component {
     })
   };
   //hides modal and dispatches the editted content
+  //payload {card: editCard, deck: deck object from redux store}
   handleEdit = (editCard) =>{
-    //need to also send tHE deck to get the updated list
+    //need to also send the deck to get the updated list
     const payload = {
       card: editCard,
       deck: this.props.state.cardList.deck
@@ -35,6 +39,7 @@ class CardListItem extends Component {
     })
   }
   //hides modal and dispatches the delete
+  //payload {card: deleteCard, deck: the deck object from redux store}
   handleDelete = (deleteCard)=>{
     const payload = {
       card: deleteCard,

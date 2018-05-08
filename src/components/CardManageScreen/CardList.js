@@ -3,7 +3,7 @@ import { Text, View, ListView, FlatList, LayoutAnimation } from "react-native";
 import {Icon} from 'native-base';
 import { connect } from "react-redux";
 import CardListItem from './CardListItem';
-
+//configuration for the animation when view is loaded
 const CustomLayoutSpring = {
   duration: 200,
   create: {
@@ -18,17 +18,20 @@ const CustomLayoutSpring = {
 };
 
 class CardList extends Component {
+  //called when the component is initialized or anytime state changes
   static getDerivedStateFromProps(nextProps, prevState) {
     LayoutAnimation.configureNext(CustomLayoutSpring);
+    //must return an object to update state or null
     return null;
   }
   render() {
-    console.log("in card list ", this.props.state.cardList);
+    //destructures the cardlist array out of redux store
+    const { cardList } = this.props.state.cardList;
     return (
       <View style={{ flex: 1 }}>
-        {/* {this.noCardsInDeck()} */}
+        {/* FlatList iterates over the array */}
         <FlatList
-          data={this.props.state.cardList.cardList}
+          data={cardList}
           renderItem={({ item }) => <CardListItem card={item} />}
         />
       </View>
