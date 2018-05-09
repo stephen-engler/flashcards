@@ -10,7 +10,7 @@ import { TouchableWithoutFeedback } from "react-native";
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push, goBack } from "react-router-redux";
-//Custome Components
+//Custom Components
 import FlashcardItem from './FlashcardItem';
 import EmptyDeck from './EmptyDeck';
 import FlashHeader from '../Header/FlashHeader';

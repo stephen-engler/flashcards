@@ -11,6 +11,7 @@ import FlipCard from 'react-native-flip-card'
 import {flashCardItemStyle, flashCardTextStyle, flashCardStyle, flashCardBackStyle} from '../styles/styles'
 
 class FlashcardItem extends Component{
+
     render(){
       const  {item} = this.props;
       //flip card animates between showing the first card
@@ -32,6 +33,7 @@ class FlashcardItem extends Component{
               </CardItem>
             </Card>
         </FlipCard>);
+
     }
 }
 
