@@ -20,6 +20,7 @@ class FlashcardItem extends Component{
     state = {
         showAnswer: false
     };
+    //makes sure state is reset to false each time the card gets new props
     static getDerivedStateFromProps(nextProps, prevState){
         return {showAnswer: false};
     }
@@ -29,7 +30,7 @@ class FlashcardItem extends Component{
         showAnswer: true
         });
     };
-
+    //shows answer if true, shows prompt if false
     renderCard = item => {
         if (this.state.showAnswer) {
         return <CardItem style={flashCardItemStyle}>
@@ -44,7 +45,7 @@ class FlashcardItem extends Component{
     };
     render(){
       const  {item} = this.props;
-      
+      //makes the entire card touchable
         return(
             <TouchableWithoutFeedback 
               onPress={this.handlePress}>
