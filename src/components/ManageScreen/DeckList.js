@@ -19,6 +19,7 @@ const CustomLayoutSpring = {
 };
 
 class DeckList extends Component {
+  state={}
   //called when componenet is initialized and state changes
   //sets up animation for when view is navigated tof
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -32,6 +33,7 @@ class DeckList extends Component {
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.props.state.deckList}
+          keyExtractor={item=>item.deck_name}
           renderItem={({ item }) => <ListItem deck={item} />}
         />
       </View>

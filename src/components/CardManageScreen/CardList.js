@@ -18,6 +18,7 @@ const CustomLayoutSpring = {
 };
 
 class CardList extends Component {
+  state={};
   //called when the component is initialized or anytime state changes
   static getDerivedStateFromProps(nextProps, prevState) {
     LayoutAnimation.configureNext(CustomLayoutSpring);
@@ -31,6 +32,7 @@ class CardList extends Component {
       <View style={{ flex: 1 }}>
         {/* FlatList iterates over the array */}
         <FlatList
+          keyExtractor={item=>item.prompt}
           data={cardList}
           renderItem={({ item }) => <CardListItem card={item} />}
         />
