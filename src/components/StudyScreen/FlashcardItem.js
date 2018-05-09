@@ -1,63 +1,38 @@
+import React, { Component } from "react";
+
+//Components
 import {
-  Container,
-  Content,
-  View,
-  DeckSwiper,
   Card,
   CardItem,
   Text,
-  Left,
-  Body,
-  Button,
-  Icon,
 } from "native-base";
-import { TouchableWithoutFeedback } from "react-native";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {flashCardItemStyle, flashCardTextStyle, flashCardStyle} from '../styles/styles'
+import FlipCard from 'react-native-flip-card'
+//Styles
+import {flashCardItemStyle, flashCardTextStyle, flashCardStyle, flashCardBackStyle} from '../styles/styles'
 
 class FlashcardItem extends Component{
-    state = {
-        showAnswer: false
-    };
-    static getDerivedStateFromProps(nextProps, prevState){
-        return {showAnswer: false};
-    }
-    handlePress = () => {
-        console.log('pressed');
-        this.setState({
-        showAnswer: true
-        });
-    };
-
-    renderCard = item => {
-        if (this.state.showAnswer) {
-        return <CardItem style={flashCardItemStyle}>
-            <Text style={flashCardTextStyle}>{item.answer}</Text>
-          </CardItem>;
-        }
-        return (
-            <CardItem style={flashCardItemStyle}>
-                <Text style={flashCardTextStyle}>{item.prompt}</Text>
-            </CardItem>
-        );
-    };
     render(){
       const  {item} = this.props;
-      
-        return(
-            <TouchableWithoutFeedback 
-              onPress={this.handlePress}>
-                <Card style={flashCardStyle}>
-                  {this.renderCard(item)}
-                </Card>
-            </TouchableWithoutFeedback>
-        )
+      //flip card animates between showing the first card
+      //and the second card on touch
+      //Had to change the source code in the flipcard style file
+      //There was a black border and it was the only way to remove it
+        return (
+          <FlipCard>
+              {/* Prompt card */}
+            <Card style={flashCardStyle}>
+              <CardItem style={flashCardItemStyle}>
+                <Text style={flashCardTextStyle}>{item.prompt}</Text>
+              </CardItem>
+            </Card>
+            {/* Answer Card */}
+            <Card style={flashCardBackStyle}>
+              <CardItem style={flashCardItemStyle}>
+                <Text style={flashCardTextStyle}>{item.answer}</Text>
+              </CardItem>
+            </Card>
+        </FlipCard>);
     }
 }
 
-const mapStateToProps = (state)=>({
-    state
-})
-
-export default connect(mapStateToProps)(FlashcardItem);
+export default FlashcardItem;

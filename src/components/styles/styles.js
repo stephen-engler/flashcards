@@ -82,9 +82,21 @@ export const flashCardStyle = {
     marginLeft: 20, 
     marginRight: 20, 
     borderRadius: 4, 
-    borderWidth: 10, 
+    // borderWidth: 10, 
     borderTopWidth: 7,
     borderTopColor: "#ffc107" };
+
+export const flashCardBackStyle = { 
+    elevation: 3, 
+    height: 300, 
+    shadowColor: "black", 
+    marginTop: 100, 
+    marginLeft: 20, 
+    marginRight: 20, 
+    borderRadius: 4, 
+    borderTopWidth: 7, 
+    borderTopColor: "#e65100" 
+    };
 
 export const listItemTextStyle = {
     fontSize: 20,
@@ -130,3 +142,7 @@ export const studyScreenView = {
     justifyContent: "space-between", 
     padding: 15 
 };
+
+export const flipCardStyle={
+
+}
