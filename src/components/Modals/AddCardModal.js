@@ -34,6 +34,9 @@ class AddCardModal extends Component {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
           console.log("modal closed");
         }}>
+        <Button large transparent style={{ marginTop: 10, right: 1 }} onPress={() => this.props.hideModal()}>
+          <Icon name="arrow-back" style={iconStyle} />
+        </Button>
         <View style={viewStyle}>
           <View>
             <Card>

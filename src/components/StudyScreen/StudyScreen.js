@@ -57,6 +57,7 @@ class StudyScreen extends Component {
     this.setState({
       incorrect: [...this.state.incorrect, item]
     })
+    console.log(item)
   }
   //called when user presses the check button, adds item to state and swipes deck right 
   //buttons pass in the root state of the deckswiper component
@@ -73,10 +74,17 @@ class StudyScreen extends Component {
   render() {
 
     return <AnimateView>
-      <Container style={appBackGroundColor}>
+        <Container style={appBackGroundColor}>
           <FlashHeader goHome={this.goHome} goBack={this.goBack} title="Study" />
           <View style={{ flex: 1 }}>
-            <DeckSwiper ref={c => (this._deckSwiper = c)} dataSource={this.state.cardList} renderEmpty={this.renderEmptyDeck} looping={false} onSwipeRight={item => this.gotCorrect(item)} onSwipeLeft={item => this.gotIncorrect(item)} renderItem={item => <FlashcardItem item={item} />} />
+            <DeckSwiper 
+              ref={c => (this._deckSwiper = c)} 
+              dataSource={this.state.cardList} 
+              renderEmpty={this.renderEmptyDeck} 
+              looping={false} 
+              onSwipeRight={item => this.gotCorrect(item)} 
+              onSwipeLeft={item => this.gotIncorrect(item)} 
+              renderItem={item => <FlashcardItem item={item} />} />
           </View>
 
           <View style={studyScreenView}>
