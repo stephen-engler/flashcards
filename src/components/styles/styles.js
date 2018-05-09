@@ -132,6 +132,8 @@ export const listItemIconStyle ={
  alignSelf: "flex-end", color: "#ffc107", fontSize: 35 
 }
 
+export const listItemEditStyle = { alignSelf: "flex-end", color: "#ffc107", fontSize: 20 };
+
 export const studyScreenView = { 
     flexDirection: "row", 
     flex: 1, 

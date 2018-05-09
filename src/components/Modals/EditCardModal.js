@@ -13,7 +13,7 @@ import {
   Icon
 } from "native-base";
 import { Modal } from "react-native";
-import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle} from '../styles/styles'
+import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle, buttonTextStyle} from '../styles/styles'
 
 class EditCardModal extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class EditCardModal extends Component {
                       <Icon name="ios-close-circle-outline" style={iconStyle} />
                     </Button>
                     <Button style={center} transparent onPress={() => this.props.handleEdit(this.state)}>
-                      <Icon name="ios-create-outline" style={iconStyle} />
+                      <Text style={buttonTextStyle}>Edit</Text>
                     </Button>
                   </View>
                 </Form>

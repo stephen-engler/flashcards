@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 //Custom components
 import EditCardModal from "../Modals/EditCardModal";
 //Styles
-import {listItemTextStyle, listItemIconStyle, listItemStyle} from '../styles/styles'
+import {listItemTextStyle, listItemIconStyle, listItemStyle, listItemEditStyle} from '../styles/styles'
 
 class CardListItem extends Component {
   state={
@@ -65,7 +65,7 @@ class CardListItem extends Component {
             <Text style={listItemTextStyle}>{this.props.card.prompt}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: "flex-end" }}>
-            <Icon name="ios-information" style={listItemIconStyle} />
+            <Icon name="md-create" style={listItemEditStyle} />
           </View>
           <EditCardModal modalVisible={this.state.modalVisible} card={this.props.card} handleEdit={this.handleEdit} handleDelete={this.handleDelete} hideModal={this.hideModal} />
         </View>

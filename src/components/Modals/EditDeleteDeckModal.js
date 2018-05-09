@@ -12,7 +12,7 @@ import {
   Text,
   Icon
 } from "native-base";
-import {buttonContainerStyle, viewStyle, cardItemStyle, center, iconStyle} from '../styles/styles';
+import {buttonContainerStyle, viewStyle, cardItemStyle, center, iconStyle, buttonTextStyle} from '../styles/styles';
 
 class EditDeleteDeckModal extends Component {
   state = {
@@ -56,7 +56,7 @@ class EditDeleteDeckModal extends Component {
                     </Button>
 
                     <Button style={center} transparent onPress={() => this.props.handleEdit(this.state)}>
-                      <Icon name="ios-create-outline" style={iconStyle} />
+                      <Text style={buttonTextStyle}>Edit</Text>
                     </Button>
                   </View>
                 </Form>
