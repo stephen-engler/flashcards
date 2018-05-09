@@ -13,6 +13,7 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import LoadingAnimation from '../LoadingAnimation/LoadingAnimation';
+import {buttonTextStyle, center} from '../styles/styles'
 
 class LoginForm extends Component {
   state = {
@@ -48,17 +49,13 @@ class LoginForm extends Component {
       return <LoadingAnimation />;
     }
 
-    return (
-      <View style={styles.buttonStyle}>
-        <Button
-          large
-          onPress={this.handleButtonPress}
-          style={{ alignSelf: "center" }}
-        >
-          <Text>Login</Text>
+    return <View style={styles.buttonStyle}>
+        <Button large transparent onPress={this.handleButtonPress} style={center}>
+          <Text style={{ color: "#ffc107", fontSize: 30 }}>
+            Login
+          </Text>
         </Button>
-      </View>
-    );
+      </View>;
   };
 
   render() {
@@ -98,10 +95,12 @@ class LoginForm extends Component {
                 <View style={styles.registerStyle}>
                     <Text>Don't have an accout?</Text>
                     <Button
+                    large
+                    transparent
                     style={{ alignSelf: "center" }}
                     onPress={this.handleRegisterPress}
                     >
-                    <Text>Register</Text>
+                    <Text style={buttonTextStyle}>Register</Text>
                     </Button>
                 </View>
             </View>

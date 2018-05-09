@@ -59,17 +59,13 @@ class SignInForm extends Component {
       return <Spinner />;
     }
 
-    return (
-      <View style={styles.buttonStyle}>
-        <Button
-          large
-          onPress={this.handleButtonPress}
-          style={{ alignSelf: "center" }}
-        >
-          <Text>Sign up</Text>
+    return <View style={styles.buttonStyle}>
+        <Button large transparent onPress={this.handleButtonPress} style={{ alignSelf: "center" }}>
+          <Text style={{ color: "#ffc107", fontSize: 30 }}>
+            Sign up
+          </Text>
         </Button>
-      </View>
-    );
+      </View>;
   };
 
   //render
