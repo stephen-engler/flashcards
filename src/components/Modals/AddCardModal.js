@@ -13,7 +13,7 @@ import {
     Icon
 } from 'native-base'
 import {Modal} from 'react-native';
-import {viewStyle, cardItemStyle,buttonContainerStyle, center, iconStyle} from '../styles/styles';
+import {viewStyle, cardItemStyle,buttonContainerStyle, center, iconStyle, buttonTextStyle, addViewStyle} from '../styles/styles';
 
 
 class AddCardModal extends Component {
@@ -37,7 +37,7 @@ class AddCardModal extends Component {
         <Button large transparent style={{ marginTop: 10, right: 1 }} onPress={() => this.props.hideModal()}>
           <Icon name="arrow-back" style={iconStyle} />
         </Button>
-        <View style={viewStyle}>
+        <View style={addViewStyle}>
           <View>
             <Card>
               <CardItem style={cardItemStyle}>
@@ -55,7 +55,7 @@ class AddCardModal extends Component {
                   </Item>
                   <View style={buttonContainerStyle}>
                     <Button style={center} transparent onPress={() => this.props.hideModal()}>
-                      <Icon name="ios-close-circle-outline" style={iconStyle} />
+                      <Text style={buttonTextStyle}>Close</Text>
                     </Button>
                     <Button style={center} transparent onPress={() => this.props.handleSubmit(this.state)}>
                       <Icon name="add-circle" style={iconStyle} />

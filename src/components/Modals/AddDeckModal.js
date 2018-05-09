@@ -36,7 +36,7 @@ class AddDeckModal extends Component{
                       </Item>
                       <View style={buttonContainerStyle}>
                         <Button style={center} transparent onPress={() => this.props.hideModal()}>
-                          <Icon name="ios-close-circle-outline" style={iconStyle}/>
+                          <Text style={buttonTextStyle}>Close</Text>
                         </Button>
                         <Button style={center} transparent onPress={this.handlePress}>
                           <Icon name="add-circle" style={iconStyle} />

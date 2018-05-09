@@ -15,12 +15,9 @@ export const viewStyle = {
     flex: 1 
 };
 
-export const cardItemStyle = { 
-    height: 300, 
-    backgroundColor: "#f5f5f5",
-    borderRadius: 1,
-    borderColor: 'black' 
-};
+export const addViewStyle = { marginTop: 30, paddingRight: 10, paddingLeft: 10, flex: 1 };
+
+export const cardItemStyle = { height: 300, backgroundColor: "#fafafa", borderRadius: 4, borderWidth: 1, borderColor: "#ddd", shadowColor: "black", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 2, elevation: 1 };
 
 export const center = { alignSelf: "center" };
 

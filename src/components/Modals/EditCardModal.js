@@ -13,7 +13,7 @@ import {
   Icon
 } from "native-base";
 import { Modal } from "react-native";
-import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle, buttonTextStyle} from '../styles/styles'
+import {viewStyle, buttonContainerStyle, cardItemStyle, center, iconStyle, buttonTextStyle, addViewStyle} from '../styles/styles'
 
 class EditCardModal extends Component {
   constructor(props) {
@@ -35,10 +35,10 @@ class EditCardModal extends Component {
     return <Modal animationType="none" transparent={true} visible={this.props.modalVisible} onRequestClose={() => {
           console.log("modal closed");
         }}>
-        <Button large transparent style={{marginTop: 10, right: 1}} onPress={()=>this.props.hideModal()}>
+        <Button large transparent style={{ marginTop: 10, right: 1 }} onPress={() => this.props.hideModal()}>
           <Icon name="arrow-back" style={iconStyle} />
         </Button>
-        <View style={viewStyle}>
+        <View style={addViewStyle}>
           <View>
             <Card>
               <CardItem style={cardItemStyle}>
@@ -59,10 +59,10 @@ class EditCardModal extends Component {
                       <Icon name="ios-trash-outline" style={iconStyle} />
                     </Button>
                     <Button style={center} transparent onPress={() => this.props.hideModal()}>
-                      <Icon name="ios-close-circle-outline" style={iconStyle} />
+                      <Text style={buttonTextStyle}>Close</Text>
                     </Button>
                     <Button style={center} transparent onPress={() => this.props.handleEdit(this.state)}>
-                      <Text style={buttonTextStyle}>Edit</Text>
+                      <Text style={buttonTextStyle}>Save</Text>
                     </Button>
                   </View>
                 </Form>

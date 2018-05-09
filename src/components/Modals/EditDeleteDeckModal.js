@@ -52,11 +52,11 @@ class EditDeleteDeckModal extends Component {
                     </Button>
 
                     <Button style={center} transparent onPress={() => this.props.hideModal()}>
-                      <Icon name="ios-close-circle-outline" style={iconStyle} />
+                      <Text style={buttonTextStyle}>Close</Text>
                     </Button>
 
                     <Button style={center} transparent onPress={() => this.props.handleEdit(this.state)}>
-                      <Text style={buttonTextStyle}>Edit</Text>
+                      <Text style={buttonTextStyle}>Save</Text>
                     </Button>
                   </View>
                 </Form>

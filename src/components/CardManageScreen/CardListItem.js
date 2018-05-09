@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import {
   Text,
   TouchableWithoutFeedback,
+  TouchableHighlight,
+  TouchableOpacity,
   View,
   LayoutAnimation
 } from "react-native";
@@ -59,7 +61,7 @@ class CardListItem extends Component {
   }
 
   render(props) {
-    return <TouchableWithoutFeedback onPress={this.handlePress}>
+    return <TouchableOpacity onPress={this.handlePress}>
         <View style={listItemStyle}>
           <View style={{ flex: 1, justifyContent: "flex-start" }}>
             <Text style={listItemTextStyle}>{this.props.card.prompt}</Text>
@@ -69,7 +71,7 @@ class CardListItem extends Component {
           </View>
           <EditCardModal modalVisible={this.state.modalVisible} card={this.props.card} handleEdit={this.handleEdit} handleDelete={this.handleDelete} hideModal={this.hideModal} />
         </View>
-      </TouchableWithoutFeedback>;
+      </TouchableOpacity>;
   }
 }
 

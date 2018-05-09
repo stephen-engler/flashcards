@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import {
   Text,
   TouchableWithoutFeedback,
+  TouchableHighlight,
+  TouchableOpacity,
   View,
   LayoutAnimation,
   Alert
@@ -55,7 +57,7 @@ class ListItem extends Component{
 
     render(props){
         const {deck} = this.props
-        return <TouchableWithoutFeedback 
+        return <TouchableOpacity 
                     onPress={this.handlePress} 
                     onLongPress={() => this.setState(
                         { modalVisible: true }
@@ -79,7 +81,7 @@ class ListItem extends Component{
                 handleDelete={this.handleDelete} 
                 />
             </View>
-          </TouchableWithoutFeedback>;
+          </TouchableOpacity>;
     }
 }
 
