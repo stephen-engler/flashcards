@@ -23,6 +23,7 @@ class StudyScreen extends Component {
     cardList: [],
     correct: [],
     incorrect: [],
+    xValue: ''
   }
   //makes sure state.cardList reflexs the redux store state
   static getDerivedStateFromProps(nextProps, prevState){
@@ -71,12 +72,28 @@ class StudyScreen extends Component {
     this._deckSwiper._root.swipeLeft();
   }
 
-  render() {
+  // renderTest(){
+  //   if (this._deckSwiper) {
+  //     const xValue = JSON.stringify(this._deckSwiper._root.state.pan.x)
 
+  //     return(
+  //       <Text>{xValue}</Text>
+  //     )
+  //   }
+  // }
+
+  render() {
+    if(this._deckSwiper){
+    console.log(this._deckSwiper._root.state.pan)
+    }
     return <AnimateView>
         <Container style={appBackGroundColor}>
           <FlashHeader goHome={this.goHome} goBack={this.goBack} title="Study" />
           <View style={{ flex: 1 }}>
+            {/* <Text>
+              {this._deckSwiper &&
+                JSON.stringify(this._deckSwiper._root.state.pan.x)}
+            </Text> */}
             <DeckSwiper 
               ref={c => (this._deckSwiper = c)} 
               dataSource={this.state.cardList} 
@@ -84,9 +101,9 @@ class StudyScreen extends Component {
               looping={false} 
               onSwipeRight={item => this.gotCorrect(item)} 
               onSwipeLeft={item => this.gotIncorrect(item)} 
-              renderItem={item => <FlashcardItem item={item} />} />
+              renderItem={item => <FlashcardItem item={item} deckSwiper={this._deckSwiper}/>} 
+              />
           </View>
-
           <View style={studyScreenView}>
             <Button large transparent onPress={() => this.swipeLeftButton(this._deckSwiper._root.state.selectedItem)}>
               <Icon name="ios-close-outline" style={{ color: "#ffc107", fontSize: 60 }} />
