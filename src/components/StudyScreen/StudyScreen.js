@@ -3,10 +3,10 @@ import {
   Button,
   View,
   Icon,
-  DeckSwiper,
   Text,
 } from "native-base";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, PanResponder } from "react-native";
+import {DeckSwiper} from '../common/NativeBase/src/basic/DeckSwiper';
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push, goBack } from "react-router-redux";
@@ -23,7 +23,7 @@ class StudyScreen extends Component {
     cardList: [],
     correct: [],
     incorrect: [],
-    xValue: ''
+    swiping: '',
   }
   //makes sure state.cardList reflexs the redux store state
   static getDerivedStateFromProps(nextProps, prevState){
@@ -72,28 +72,20 @@ class StudyScreen extends Component {
     this._deckSwiper._root.swipeLeft();
   }
 
-  // renderTest(){
-  //   if (this._deckSwiper) {
-  //     const xValue = JSON.stringify(this._deckSwiper._root.state.pan.x)
+  swipingDirection=(direction)=>{
 
-  //     return(
-  //       <Text>{xValue}</Text>
-  //     )
-  //   }
-  // }
+    this.setState({
+      swiping: direction,
+    })
+    console.log('swiping direction ', direction);
+  }
 
   render() {
-    if(this._deckSwiper){
-    console.log(this._deckSwiper._root.state.pan)
-    }
     return <AnimateView>
         <Container style={appBackGroundColor}>
+          >
           <FlashHeader goHome={this.goHome} goBack={this.goBack} title="Study" />
           <View style={{ flex: 1 }}>
-            {/* <Text>
-              {this._deckSwiper &&
-                JSON.stringify(this._deckSwiper._root.state.pan.x)}
-            </Text> */}
             <DeckSwiper 
               ref={c => (this._deckSwiper = c)} 
               dataSource={this.state.cardList} 
@@ -101,7 +93,11 @@ class StudyScreen extends Component {
               looping={false} 
               onSwipeRight={item => this.gotCorrect(item)} 
               onSwipeLeft={item => this.gotIncorrect(item)} 
-              renderItem={item => <FlashcardItem item={item} deckSwiper={this._deckSwiper}/>} 
+              renderItem={item => <FlashcardItem 
+                        item={item} 
+                        userSwipingDirection={this.state.swiping} 
+                        />} 
+              swipingDirection={this.swipingDirection}
               />
           </View>
           <View style={studyScreenView}>
