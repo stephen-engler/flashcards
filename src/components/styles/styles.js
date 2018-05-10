@@ -68,7 +68,8 @@ export const flashCardTextStyle = {
 export const flashCardItemStyle = { 
     flex: 1, 
     justifyContent: "center", 
-    alignItems: "center" 
+    alignItems: "center",
+    paddingBottom: 50,
 };
 
 export const flashCardStyle = { 
@@ -83,17 +84,7 @@ export const flashCardStyle = {
     borderTopWidth: 7,
     borderTopColor: "#ffc107" };
 
-export const flashCardBackStyle = { 
-    elevation: 3, 
-    height: 300, 
-    shadowColor: "black", 
-    marginTop: 100, 
-    marginLeft: 20, 
-    marginRight: 20, 
-    borderRadius: 4, 
-    borderTopWidth: 7, 
-    borderTopColor: "#e65100" 
-    };
+export const flashCardBackStyle = { elevation: 3, height: 300, shadowColor: "black", marginTop: 100, marginLeft: 20, marginRight: 20, borderRadius: 4, borderTopWidth: 7, borderTopColor: "#26c6da" };
 
 export const listItemTextStyle = {
     fontSize: 20,
