@@ -6,8 +6,8 @@ import {DECKS} from '../actions/deckActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
-const host = "https://lit-hamlet-45219.herokuapp.com/";
-
+const host = "http://localhost:5000/";
+// const host = "https://lit-hamlet-45219.herokuapp.com/";
 const config = {
   headers: { "Content-Type": "application/json" },
   withCredentials: true
