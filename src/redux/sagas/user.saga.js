@@ -3,6 +3,7 @@ import axios from "axios";
 import {push} from 'react-router-redux';
 import {LOADING } from '../actions/loadingActions';
 import {DECKS} from '../actions/deckActions';
+import {USER} from '../actions/userActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -93,10 +94,10 @@ function* logoutUserSaga(action){
 }
 
 function* userSaga(){
-  yield takeLatest('LOGIN_USER', loginUserSaga);
-  yield takeLatest('REGISTER_USER', registerUserSaga);
-  yield takeLatest('GET_USER_INFO', getUserInfoSaga);
-  yield takeLatest('LOGOUT_USER', logoutUserSaga);
+  yield takeLatest(USER.LOGIN, loginUserSaga);
+  yield takeLatest(USER.REGISTER, registerUserSaga);
+  yield takeLatest(USER.INFO, getUserInfoSaga);
+  yield takeLatest(USER.LOGOUT, logoutUserSaga);
 }
 
 export default userSaga;

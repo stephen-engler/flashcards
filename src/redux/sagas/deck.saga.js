@@ -99,10 +99,10 @@ function* deleteDeckSaga(action){
 
 
 function* deckSaga(){
-    yield takeLatest('GET_USER_DECKS', getDecksSaga);
-    yield takeLatest('ADD_DECK_NAME', addDeckSaga);
-    yield takeLatest('UPDATE_DECK', updateDeckSaga);
-    yield takeLatest('DELETE_DECK', deleteDeckSaga);
+    yield takeLatest(DECKS.GET, getDecksSaga);
+    yield takeLatest(DECKS.ADD, addDeckSaga);
+    yield takeLatest(DECKS.UPDATE, updateDeckSaga);
+    yield takeLatest(DECKS.DELETE, deleteDeckSaga);
 }
 
 export default deckSaga;

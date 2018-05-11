@@ -2,7 +2,8 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
 import {LOADING} from '../actions/loadingActions';
-import {DECKS} from '../actions/deckActions'
+import {DECKS} from '../actions/deckActions';
+import {CARDS} from '../actions/cardActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -111,10 +112,10 @@ function* getCardsSaga(action){
 }
 
 function* cardSaga(){
-    yield takeLatest('USER_SELECTED_DECK', getCardsSaga);
-    yield takeLatest('ADD_CARD', addCardSaga);
-    yield takeLatest('UPDATE_CARD', updateCardSaga);
-    yield takeLatest('DELETE_CARD', deleteCardSaga);
+    yield takeLatest(DECKS.SELECTED, getCardsSaga);
+    yield takeLatest(CARDS.ADD, addCardSaga);
+    yield takeLatest(CARDS.UPDATE, updateCardSaga);
+    yield takeLatest(CARDS.DELETE, deleteCardSaga);
 }
 
 export default cardSaga;

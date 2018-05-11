@@ -3,5 +3,8 @@ export const DECKS = {
     GET: "GET_USER_DECKS", 
     CHOOSEN: "CHOOSEN_DECK", 
     ALL: "ALL_DECKS", 
-    CARDS: "ALL_CARDS" 
+    CARDS: "ALL_CARDS", 
+    ADD: "ADD_DECK_NAME",
+    UPDATE: "UPDATE_DECK",
+    DELETE: "DELETE_DECK", 
 };
