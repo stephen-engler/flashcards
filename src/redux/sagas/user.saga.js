@@ -1,8 +1,9 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import {push} from 'react-router-redux';
 import {LOADING } from '../actions/loadingActions';
 import {DECKS} from '../actions/deckActions';
+import {USER} from '../actions/userActions';
 //config for axios requests
 //axios doesn't send cookies by default
 //we want it to
@@ -14,7 +15,7 @@ const config = {
 };
 //api/user/login router
 //changes the view to Study if successfully logged in
-export function* loginUserSaga(action) {
+function* loginUserSaga(action) {
   try {
     yield put({
       type: LOADING.START
@@ -40,7 +41,7 @@ export function* loginUserSaga(action) {
 }
 //api/user/register route to register user
 //changes the view to login
-export function* registerUserSaga(action){
+function* registerUserSaga(action){
   try{
     yield put({type: LOADING.START})
     yield call(
@@ -57,7 +58,7 @@ export function* registerUserSaga(action){
   }
 }
 
-export function* getUserInfoSaga(action){
+function* getUserInfoSaga(action){
   try{
     yield put({type: LOADING.START})
     const userInfo = yield call(
@@ -79,7 +80,7 @@ export function* getUserInfoSaga(action){
 }
 
 //LOGOUT_USER
-export function* logoutUserSaga(action){
+function* logoutUserSaga(action){
   try{
     yield call(
       axios.get,
@@ -91,3 +92,12 @@ export function* logoutUserSaga(action){
     yield console.log('an error logginh out the user')
   }
 }
+
+function* userSaga(){
+  yield takeLatest(USER.LOGIN, loginUserSaga);
+  yield takeLatest(USER.REGISTER, registerUserSaga);
+  yield takeLatest(USER.INFO, getUserInfoSaga);
+  yield takeLatest(USER.LOGOUT, logoutUserSaga);
+}
+
+export default userSaga;

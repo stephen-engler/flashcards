@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import axios from "axios";
 import {LOADING} from '../actions/loadingActions';
@@ -14,7 +14,7 @@ const config = {
   withCredentials: true
 };
 //GET_USER_DECKS  DECKS.GET
-export function* getDecksSaga(action){
+function* getDecksSaga(action){
     try{
         yield put({type: LOADING.START})
         //gets all decks from server
@@ -34,38 +34,9 @@ export function* getDecksSaga(action){
         yield console.log('an error getting')
     }
 }
-//USER_SELECTED_DECK
-export function* getCardsSaga(action){
-    try{
-        yield put({type: LOADING.START})
-        //navigates the user to the card manager screen
-        yield put(push('/cards'))
-        //sets cardList reducer deck object to chosen deck--action.payload is the deck object
-        yield put({
-            type: DECKS.CHOOSEN,
-            payload: action.payload
-        })
-        //gets all cards from the server, action.payload.id is the id of the deck
-        const cards = yield call(
-            axios.get,
-            `${host}api/card/${action.payload.id}`,
-            config
-        )
-        //Sets the cardList reducer card array to the response data
-        yield put({
-            type: DECKS.CARDS,
-            payload: cards.data
-        })
-        yield put({type: LOADING.DONE})
 
-        
-
-    }catch(error){
-        yield console.log('an error getting the cards ', error);
-    }
-}
 //ADD_DECK_NAME
-export function* addDeckSaga(action){
+function* addDeckSaga(action){
     try{
         yield put({type: LOADING.START})
         //post route to server to add deck, server expects an object {deck_name: 'name of deck'}
@@ -90,26 +61,48 @@ export function* addDeckSaga(action){
         yield console.log('an error adding deck ', error);
     }
 }
-//ADD_CARD
-export function* addCardSaga(action){
+//UPDATE_DECK
+function* updateDeckSaga(action){
     try{
         yield put({type: LOADING.START})
-        //post route to the server to add card
-        //action.payload is an object with keys of {answer: 'the answer', prompt: 'the prompt', deck: {the deck object}}
         yield call(
-            axios.post,
-            `${host}api/card`,
+            axios.put,
+            `${host}api/deck/${action.payload.id}`,
             action.payload,
             config
         )
-        //Changes the selected deck which updates the decklist
-        //this is why we send the entire deck object
         yield put({
-            type: DECKS.SELECTED,
-            payload: action.payload.deck
+            type: DECKS.GET
         })
         yield put({type: LOADING.DONE})
     }catch(error){
-        yield console.log('an error adding the card ', error)
+        yield console.log('error in update deck saga ', error);
     }
 }
+//DELETE_DECK 
+function* deleteDeckSaga(action){
+    try{
+        yield put({type: LOADING.START})
+        yield call(axios.delete, 
+        `${host}api/deck/${action.payload.id}`,
+        config,
+        )
+        yield put({
+            type: DECKS.GET,
+            payload: action.payload
+        })
+        yield put({type: LOADING.DONE})
+    }catch(error){
+        yield console.log('an error in delete card saga ', error);
+    }
+}
+
+
+function* deckSaga(){
+    yield takeLatest(DECKS.GET, getDecksSaga);
+    yield takeLatest(DECKS.ADD, addDeckSaga);
+    yield takeLatest(DECKS.UPDATE, updateDeckSaga);
+    yield takeLatest(DECKS.DELETE, deleteDeckSaga);
+}
+
+export default deckSaga;
