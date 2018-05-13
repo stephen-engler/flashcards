@@ -6,7 +6,7 @@ const LoadingAnimation = ()=>{
     return (
     
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Animatable.Text 
+        {/* <Animatable.Text 
             style={styles.flashStyle} 
             animation="swing" 
             duration={2000} 
@@ -20,7 +20,7 @@ const LoadingAnimation = ()=>{
             direction="alternate" 
             iterationCount={Infinity}>
           Cards
-        </Animatable.Text>
+        </Animatable.Text> */}
         <Spinner color="red"/>
     </View>
     
