@@ -1,65 +1,42 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import * as Animatable from "react-native-animatable";
+import {  View } from "react-native";
+import {Container, Header, Body, Text, Spinner} from 'native-base';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-native';
-import {push} from 'react-router-redux';
+import { headerBackgroundColor, headerTextStyle, appBackGroundColor} from '../styles/styles'
+
 
 
 class StartScreen extends Component {
 
   state = {
-
+    loading: false,
   }
   componentDidMount() {
     console.log('in startscreen')
     this.props.dispatch({
       type: 'GET_USER_INFO'
     })
+    // this.renderLoading();
   }
+
+  // renderLoading=()=>{
+  //   setTimeout(()=>this.setState({loading: true}), 1000);
+  // }
 
 
   render() {
 
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Animatable.Text
-          style={styles.flashStyle}
-          animation="swing"
-          duration={2000}
-          iterationCount={Infinity}
-        >
-          Flash
-        </Animatable.Text>
-        <Animatable.Text
-          style={styles.cardsStyle}
-          animation="tada"
-          duration={2000}
-          direction="alternate"
-          iterationCount={Infinity}
-        >
-          Cards
-        </Animatable.Text>
-
-
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.dispatch(push('/study'))}
-        />
-        <Button
-          title="Login"
-          onPress={() => this.props.dispatch(push('/login'))}
-        />
-        <Button
-          title="Sign up"
-          onPress={() => this.props.dispatch(push('/signin'))}
-        />
-        <Button
-          title='manage'
-          onPress={()=>this.props.dispatch(push('/manage'))}
-        />
-      </View>
-    );
+    return <Container style={appBackGroundColor}>
+        <Header style={headerBackgroundColor}>
+          <Body>
+            <Text style={headerTextStyle}>Flash Cards</Text>
+          </Body>
+        </Header>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          {this.loading && <Spinner color='red' />}
+        </View>
+      </Container>;
   }
 }
 

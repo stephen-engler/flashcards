@@ -71,6 +71,7 @@ function* getUserInfoSaga(action){
       type: 'SET_USER',
       payload: {id: userInfo.data.id, username: userInfo.data.username}
     })
+    yield put(push('/manage'))
     yield put({type: LOADING.DONE})
 
   }catch(error){
