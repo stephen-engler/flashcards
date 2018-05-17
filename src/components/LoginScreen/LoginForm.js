@@ -93,7 +93,7 @@ class LoginForm extends Component {
                 {this.renderButton()}
                 {/* Register Button */}
                 <View style={styles.registerStyle}>
-                    <Text>Don't have an accout?</Text>
+                    <Text>Don't have an account?</Text>
                     <Button
                     large
                     transparent
