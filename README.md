@@ -6,11 +6,19 @@ Currently in development.
 The user can create a deck of flash cards and add cards to the deck.  The user can then study with the deck by tapping the card to see the answer and swipping to see the next card.  The user can also edit and delete cards when necessary.  All data is stored on a server.  UI inspired by the Apple Developer guidelines.  
 
 ## Images
-Home Screen
+### Home Screen
 ![Home Screen](/images/deckScreen.png)
 
-Decks
+### Decks
 ![Deck Screen](/images/cards.png)
+
+### Adding a card
+![adding a card](/images/addCard.png)
+
+### Studying 
+![studying](/images/study.png)
+![answer](/images/answer.png)
+![swiping](/images/swipe.png)
 
 ## Tech Used
 * React.js
