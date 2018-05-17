@@ -7,10 +7,10 @@ The user can create a deck of flash cards and add cards to the deck.  The user c
 
 ## Images
 Home Screen
-![Home Screen](/images/homeScreen.png)
+![Home Screen](/images/deckScreen.png)
 
 Decks
-![Deck Screen](/images/deckScreen.png)
+![Deck Screen](/images/cards.png)
 
 ## Tech Used
 * React.js
