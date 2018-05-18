@@ -55,6 +55,7 @@ function* registerUserSaga(action){
 
   }catch(error){
     yield console.log('an error registering the user ', error)
+    yield put({type: 'ERROR_REGISTERING_USER'})
   }
 }
 
