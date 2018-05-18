@@ -27,7 +27,7 @@ class AddCardModal extends Component {
 //makes sure modal is reset after it is hidden
   static getDerivedStateFromProps(nextProps, prevState){
     return {prompt:'', answer:''}
-  }
+  }  
 
 
   render() {

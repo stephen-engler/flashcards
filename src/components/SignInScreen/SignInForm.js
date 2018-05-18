@@ -21,6 +21,15 @@ class SignInForm extends Component {
     error: "",
     loading: false
   };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps);
+    if (nextProps.state.error.error === true){
+      return {error: 'That username is taken', email: '', password: '', confirmPassword: '', loading: false};
+    }
+    return null;
+  }
+
   //handles the register button press
   handleButtonPress = () => {
     //checks if passwords match
@@ -52,6 +61,15 @@ class SignInForm extends Component {
       confirmPassword: ""
     });
   };
+  usernameTaken = () => {
+    this.setState({
+      error: `The username is taken`,
+      password: "",
+      confirmPassword: "",
+      email: ""
+    });
+  };
+
   //if not loading, renders the button for signin
   //if loading, shows a loading spinner
   renderButton = () => {
@@ -59,13 +77,18 @@ class SignInForm extends Component {
       return <Spinner />;
     }
 
-    return <View style={styles.buttonStyle}>
-        <Button large transparent onPress={this.handleButtonPress} style={{ alignSelf: "center" }}>
-          <Text style={{ color: "#ffc107", fontSize: 30 }}>
-            Sign up
-          </Text>
+    return (
+      <View style={styles.buttonStyle}>
+        <Button
+          large
+          transparent
+          onPress={this.handleButtonPress}
+          style={{ alignSelf: "center" }}
+        >
+          <Text style={{ color: "#ffc107", fontSize: 30 }}>Sign up</Text>
         </Button>
-      </View>;
+      </View>
+    );
   };
 
   //render
